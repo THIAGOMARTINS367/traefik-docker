@@ -1,13 +1,11 @@
-FROM node:14-alpine
+FROM node:14-alpine AS build
 
 EXPOSE 3001
 
 WORKDIR /usr/src/app
 
-COPY ["../back-end","/usr/src/app"]
+COPY ["./","./"]
 
 RUN npm install
 
-RUN npm run build todobackend
-
-RUN npm start
+ENTRYPOINT ["npm start"]
