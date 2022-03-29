@@ -6,8 +6,10 @@ ENV FRONT_PORT=3000
 
 WORKDIR /usr/local/bin
 
+ADD node_modules.tar.gz ./
+
 COPY ["./","./"]
 
 RUN npm install
 
-ENTRYPOINT ["npm test"]
+ENTRYPOINT ["npm", "test"]
