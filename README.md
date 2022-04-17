@@ -24,7 +24,7 @@ O projeto tem por objetivo a avaliação e prática dos conhecimentos adquiridos
 
 # Informações da estrutura do Projeto
 
--- Os arquivos principais do projeto estão na pasta `docker`, na raiz do projeto, nele estão contidos:
+Os arquivos principais do projeto estão na pasta `docker`, na raiz do projeto, nele estão contidos:
 - Pasta `docker-commands`: Onde fica os comandos exigidos pelos requisitos; 
   - **⚠️ Importante: você deve assumir que essa é a pasta raiz para os comandos.**
   - Por exemplo, se você precisa referenciar um caminho em um comando, você deve assumir que sua pasta raiz esta partindo de `./docker`
