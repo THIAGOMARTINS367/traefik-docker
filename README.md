@@ -60,7 +60,7 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 1. Clone o repositório
   * `git clone git@github.com:THIAGOMARTINS367/Trybe-project-docker-todo-list.git`
 
-  * Entre na pasta do repositório que você acabou de clonar:
+  * Entre na pasta do repositório que você acabou de clonar pelo Terminal:
     * `cd Trybe-project-docker-todo-list`
 
 2. Instale as dependências
@@ -70,10 +70,9 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
     * `npm test` (os testes devem rodar e falhar)
 
 3.  Inicialize o projeto
-    * Entre na pasta `docker`.
-    * Em seguida entre na pasta `docker-commands` .
-    * Execute comando por comando, no seu terminal, começando no arquivo `command01.dc` até `command12.dc`.
-      - Copie e cole os comandos no terminal de sua máquina.
+    * Entre na pasta `docker` via terminal.
+    * Copie e cole TUDO do arquivo `linux-compressed-commands.txt` no terminal, lembrando que os passos anteriores feitos no terminal devem ter sido concluídos, em seguida aperte a tecla "ENTER".
+    * Acesse http://localhost:3000 e pronto, agora é só usar a aplicação.
 
 ---
 
