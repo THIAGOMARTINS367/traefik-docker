@@ -48,7 +48,7 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 - Na aplicação "Todo-List" (Diretório `todo-app`):
   * `JavaScript`, `JSX`, `React`, `ContextAPI`, `CSS`, `Node` e `Jest`.
 
-- Nos Arquivos que foram implementados de fato:
+- Na estruturação do ambiente de execução da aplicação (Diretório `docker`):
   * `Docker`
 
 ---
@@ -56,7 +56,7 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 ## ANTES DE INICIALIZAR A APLICAÇÃO:
 
 1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-017-project-docker-todo-list.git`
+  * `git clone git@github.com:THIAGOMARTINS367/Trybe-project-docker-todo-list.git`
 
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd Trybe-project-docker-todo-list`
