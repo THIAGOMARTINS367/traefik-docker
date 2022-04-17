@@ -7,9 +7,12 @@ O projeto tem por objetivo a avaliação e prática dos conhecimentos adquiridos
 ---
 
 # Sumário
-
+- [Descrição](#descrição)
 - [Habilidades](#habilidades-requeridas)
+- [Informações - Estrutura do Projeto](#informações-da-estrutura-do-projeto)
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
+- [Tecnologias usadas](#tecnologias-usadas)
+- [ANTES DE INICIALIZAR A APLICAÇÃO](#antes-de-inicializar-a-aplicação)
 
 ---
 
@@ -42,8 +45,8 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 
 ## Tecnologias usadas
 
-- Na aplicação "Todo-List":
-  * `JavaScript`, `jsx`, `React`, `Redux` e `css`.
+- Na aplicação "Todo-List" (Diretório `todo-app`):
+  * `JavaScript`, `JSX`, `React`, `ContextAPI`, `CSS`, `Node` e `Jest`.
 
 - Nos Arquivos que foram implementados de fato:
   * `Docker`
