@@ -4,8 +4,6 @@ Este projeto foi desenvolvido durante o período de Curso da Trybe 🚀
 
 O projeto tem por objetivo a avaliação e prática dos conhecimentos adquiridos na Trybe, visando o cumprimento do requisitos solicitados pela mesma.
 
-### *ATENÇÃO: Para ver a aplicação funcionando acesse o link no canto direito em "About"*.
-
 ---
 
 # Sumário
@@ -80,11 +78,7 @@ Por tanto, é importante entender que os comandos docker escritos em `command*.d
 
 ## O que foi desenvolvido
 
-Você irá "conteinerizar" as aplicações de frontend, backend e testes, criar uma conexão entre elas e orquestrar seu funcionamento.
-
-## Desenvolvimento
-
-Crie imagens das aplicações e os configure com o docker-compose.
+Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: frontend, backend e testes. Criando uma conexão entre essas partes e orquestrando seu funcionamento. Para tal foi criado imagens das mesmas a partir de Dockerfile's e a estrutura de execução da aplicação configurada com o docker-compose.
 
 ---
 
@@ -98,19 +92,20 @@ Crie imagens das aplicações e os configure com o docker-compose.
 
 ## ANTES DE INICIALIZAR A APLICAÇÃO:
 
-Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
-
 1. Clone o repositório
   * `git clone git@github.com:tryber/sd-017-project-docker-todo-list.git`
 
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-017-project-docker-todo-list`
+    * `cd Trybe-project-docker-todo-list`
 
-2. Instale as dependências:
+2. Instale as dependências
     * `npm install`
 
   * Verifique se os testes estão executando:
     * `npm test` (os testes devem rodar e falhar)
+
+3.  Inicialize o projeto
+    * Utilize o comando `npm start` dentro da pasta `Trybe-project-docker-todo-list` para rodar o projeto em sua máquina.
 
 ---
 
@@ -131,3 +126,9 @@ npm test 01container
 ```
 ⚠ **Atenção:** ⚠
 Não  utilize a função `.only` ou `.skip` após o describe. Os testes precisam rodar por completo para que seja avaliado localmente.
+
+---
+
+## Desmontração de Uso
+
+### *Em produção*...
