@@ -1,0 +1,4 @@
+docker build -t todobackend ./todo-app/back-end/;
+docker build -t todofrontend ./todo-app/front-end/;
+docker build -t todotests ./todo-app/tests/;
+docker-compose up -d
