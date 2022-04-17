@@ -72,7 +72,8 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 3.  Inicialize o projeto
     * Entre na pasta `docker`.
     * Em seguida entre na pasta `docker-commands` .
-    * Execute comando por comando, no seu terminal, começando no arquivo `command01.dc` até `command12.dc` (Obs: Copie e cole os comandos no terminal de sua máquina).
+    * Execute comando por comando, no seu terminal, começando no arquivo `command01.dc` até `command12.dc`.
+      - Copie e cole os comandos no terminal de sua máquina.
 
 ---
 
