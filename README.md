@@ -70,12 +70,12 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
     * `npm test` (os testes devem rodar e falhar)
 
 3.  Inicialize o projeto
-    * Entre na pasta `docker` via terminal.
-    * Copie e cole TUDO do arquivo `linux-compressed-commands.txt` se estiver usando Linux, ou `windows-compressed-commands.txt` se estiver usando o Windows, no terminal, lembrando que os passos anteriores feitos no terminal devem ter sido concluídos, em seguida aperte a tecla "ENTER".
+    * Entre na pasta `docker` via terminal --> `cd docker`.
+    * Copie e cole TUDO do arquivo `linux-compressed-commands.txt` se estiver usando Linux, ou `windows-compressed-commands.txt` se estiver usando o Windows que está dentro da pasta `docker`, no terminal, lembrando que os passos anteriores feitos no terminal devem ter sido concluídos, em seguida aperte a tecla "ENTER".
     * Acesse http://localhost:3000 e pronto, agora é só usar a aplicação.
 
 ---
 
-## Desmontração de Uso
+## Desmontração Instalação Local
 
 ### *Em produção*...
