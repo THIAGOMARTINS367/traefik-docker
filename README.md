@@ -55,6 +55,8 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
 
 ## ANTES DE INICIALIZAR A APLICAÇÃO:
 
+**⚠️ Certifique-se de que possui o Docker instalado e configurado na sua máquina.**
+
 1. Clone o repositório
   * `git clone git@github.com:THIAGOMARTINS367/Trybe-project-docker-todo-list.git`
 
@@ -68,7 +70,10 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
     * `npm test` (os testes devem rodar e falhar)
 
 3.  Inicialize o projeto
-    * Utilize o comando `npm start` dentro da pasta `Trybe-project-docker-todo-list` para rodar o projeto em sua máquina.
+    * Entre na pasta `docker`.
+    * Em seguida entre na pasta `docker-commands` .
+    * Execute comando por comando, no seu terminal, começando no arquivo `command01.dc` até `command12.dc`.
+      - Copie e cole os comandos no terminal de sua máquina.
 
 ---
 
