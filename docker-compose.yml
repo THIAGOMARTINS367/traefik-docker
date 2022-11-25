@@ -30,7 +30,7 @@ services:
       - ./portainer-data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.fgarioli.com.br`)"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.thiago.fgarioli.com.br`)"
       - "traefik.http.routers.portainer.tls=true"
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.routers.portainer.entrypoints=websecure"
