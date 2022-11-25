@@ -13,7 +13,7 @@ entryPoints:
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: f.ribeirogarioli@gmail.com
+      email: thiago17thiago@gmail.com
       storage: /acme.json
       tlschallenge: {}
       # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
