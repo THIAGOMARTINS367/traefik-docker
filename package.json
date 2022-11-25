@@ -4,6 +4,10 @@
   "description": "Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.",
   "main": "index.js",
   "scripts": {
+    "compose:up:prod": "(cd docker && docker-compose -f docker-compose.prod.yaml up -d)",
+    "compose:down:prod": "(cd docker && docker-compose -f docker-compose.prod.yaml down --remove-orphans)",
+    "compose:up:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml up -d)",
+    "compose:down:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml down --remove-orphans)",
     "test": "jest --runInBand --detectOpenHandles --forceExit --verbose"
   },
   "repository": {
