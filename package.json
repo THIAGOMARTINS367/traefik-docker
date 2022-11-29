@@ -8,6 +8,7 @@
     "compose:down:prod": "(cd docker && docker-compose -f docker-compose.prod.yaml down --remove-orphans)",
     "compose:up:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml up -d)",
     "compose:down:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml down --remove-orphans)",
+    "compose:rm:images": "(cd docker && docker image rm todofrontend todobackend todotests tododb)",
     "test": "jest --runInBand --detectOpenHandles --forceExit --verbose"
   },
   "repository": {
