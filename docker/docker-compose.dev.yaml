@@ -1,59 +1,67 @@
 version: "3"
 services:
-  todoback:
+  dev_todoback:
+    container_name: dev_todoback
     image: todobackend
-    container_name: todoback
     build: ./todo-app/back-end
+    working_dir: /usr/src/app-backend
     restart: always
     ports:
       - 3001:3001
-    depends_on:
-      - tododb
+    environment:
+      - DEV=true # Variável nescessária apenas para ambiente DEV
     volumes:
+      - ./todo-app/back-end/src:/usr/src/app-backend/src # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    depends_on:
+      - tododb
     networks:
       - todo-app
 
-  todofront:
+  dev_todofront:
+    container_name: dev_todofront
     image: todofrontend
-    container_name: todofront
     build: ./todo-app/front-end
+    working_dir: /usr/src/app-frontend
     restart: always
     ports:
       - 3000:3000
-    depends_on:
-      - todoback
     environment:
       - REACT_APP_API_HOST=localhost
     volumes:
+      - ./todo-app/front-end/src:/usr/src/app-frontend/src # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    depends_on:
+      - todoback
     networks:
       - todo-app
 
-  todotests:
+  dev_todotests:
+    container_name: dev_todotests
     image: todotests
-    container_name: todotests
     build: ./todo-app/tests
+    working_dir: /usr/local/bin
     restart: always
     environment:
       - FRONT_HOST=todofront
+    volumes:
+      - ./todo-app/tests/e2e:/usr/local/bin/e2e # Mapeamento apenas para ambiente DEV
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     depends_on:
       - todoback
       - todofront
-    volumes:
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
     networks:
       - todo-app
 
-  tododb:
+  dev_tododb:
+    container_name: dev_tododb
     image: tododb
-    container_name: tododb
     build: ./todo-app/database
-    working_dir: /usr/src/app
-    platform: linux/x86_64
+    working_dir: /usr/src/database
+    restart: "always"
     ports:
       - 3003:3306
     environment:
@@ -61,16 +69,17 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test123
-    restart: "always"
+    platform: linux/x86_64
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    volumes:
+      - ./todo-app/database:/usr/src/database # Mapeamento apenas para ambiente DEV
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
       timeout: 10s
       retries: 5
-    cap_add:
-      - SYS_NICE # Deve omitir alertas menores
-    volumes:
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
     networks:
       - todo-app
 
