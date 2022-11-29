@@ -6,7 +6,7 @@
   "main": "./src/api/server.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon .",
+    "dev": "nodemon --watch \"./src/**\" ./src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
