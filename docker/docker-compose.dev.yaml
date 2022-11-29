@@ -1,13 +1,23 @@
-version: '3'
+version: "3"
 services:
   todoback:
     image: todobackend
+    container_name: todoback
     build: ./todo-app/back-end
     restart: always
     ports:
       - 3001:3001
+    depends_on:
+      - tododb
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - todo-app
+
   todofront:
     image: todofrontend
+    container_name: todofront
     build: ./todo-app/front-end
     restart: always
     ports:
@@ -15,9 +25,16 @@ services:
     depends_on:
       - todoback
     environment:
-      - REACT_APP_API_HOST=todoback
+      - REACT_APP_API_HOST=localhost
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - todo-app
+
   todotests:
     image: todotests
+    container_name: todotests
     build: ./todo-app/tests
     restart: always
     environment:
@@ -25,3 +42,37 @@ services:
     depends_on:
       - todoback
       - todofront
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - todo-app
+
+  tododb:
+    image: tododb
+    container_name: tododb
+    build: ./todo-app/database
+    working_dir: /usr/src/app
+    platform: linux/x86_64
+    ports:
+      - 3003:3306
+    environment:
+      - MYSQL_DATABASE=todo_list_db
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test123
+    restart: "always"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - todo-app
+
+networks:
+  todo-app:
