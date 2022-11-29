@@ -1,6 +1,6 @@
 FROM mysql:8.0.21 AS todo_list_db
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/database
 
 ADD /todo_list_db.sql /docker-entrypoint-initdb.d/0_todo_list_db.sql
 
