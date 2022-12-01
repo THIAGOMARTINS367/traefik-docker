@@ -17,7 +17,7 @@ const getTask = (req, res) => taskService
       res.status(500).end()
     });
 
-const addTask = (req, res) => taskModel
+const addTask = (req, res) => taskService
   .addTask(req.body.description)
     .then((addedTask)=> res.status(200).json(addedTask))
     .catch((error)=> {
