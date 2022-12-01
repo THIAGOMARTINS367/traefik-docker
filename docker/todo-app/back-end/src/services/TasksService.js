@@ -11,14 +11,20 @@ const getTask = async (id) => {
 };
 
 const addTask = async (description) => {
-  if(!description) return false;
+  if (!description) return false;
   const newTask = await taskModel.addTask(description);
   return newTask;
 };
 
 const rmTask = async (id) => {
-  if(!id) return false;
+  if (!id) return false;
   await taskModel.rmTask(id);
 };
 
-module.exports = { getAllTasks, getTask, addTask, rmTask };
+const putTask = async (id, description, check) => {
+  if (!id) return false;
+  if (!description) return false;
+  await taskModel.putTask(id, description, check);
+};
+
+module.exports = { getAllTasks, getTask, addTask, rmTask, putTask };
