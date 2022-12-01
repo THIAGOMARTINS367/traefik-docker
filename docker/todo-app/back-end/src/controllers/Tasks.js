@@ -25,7 +25,7 @@ const addTask = (req, res) => taskService
       res.status(500).end()
     });
 
-const rmTask = (req, res) => taskModel
+const rmTask = (req, res) => taskService
   .rmTask(req.params.id)
     .then(()=> res.status(204).end())
     .catch((error)=> {
