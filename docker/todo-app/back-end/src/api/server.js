@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const server = require("./routes");
 
 const PORT = process.env.PORT || 3001;
