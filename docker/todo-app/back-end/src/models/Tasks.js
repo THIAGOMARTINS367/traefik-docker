@@ -1,11 +1,13 @@
+const { connection } = require('./connection');
 const { readFile, writeFile } = require('../utils/fileHandler');
 const uuid = require('uuid').v4;
 
 const jsonDBPath = "./src/database/";
 
-const getAllTasks = async () => readFile(`${jsonDBPath}tasks.json`)
-  .then((file)=> JSON.parse(file))
-  .catch(({ message })=> new Error(`Não foi possível consultar o banco de dados:\n${message}`));
+const getAllTasks = async () => {
+  const [result] = await connection.execute('SELECT * FROM todo_list ORDER BY id');
+  return result;
+}
 
 const getTask = async (id) => getAllTasks()
   .then((tasks)=> tasks.filter(item=> item.id === id))
