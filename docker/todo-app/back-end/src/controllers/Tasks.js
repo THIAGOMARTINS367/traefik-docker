@@ -33,7 +33,7 @@ const rmTask = (req, res) => taskService
       res.status(500).end()
     });
 
-const putTask = ({ params, body }, res) => taskModel
+const putTask = ({ params, body }, res) => taskService
   .putTask(params.id, body.description, body.check)
     .then(()=> res.status(204).end())
     .catch((error)=> {
