@@ -5,13 +5,19 @@ const uuid = require('uuid').v4;
 const jsonDBPath = "./src/database/";
 
 const getAllTasks = async () => {
-  const [result] = await connection.execute('SELECT * FROM todo_list ORDER BY id');
+  const [result] = await connection.execute(
+    'SELECT * FROM todo_list ORDER BY id',
+  );
   return result;
-}
+};
 
-const getTask = async (id) => getAllTasks()
-  .then((tasks)=> tasks.filter(item=> item.id === id))
-  .catch(({ message })=> new Error(`Não foi possível consultar o banco de dados:\n${message}`));
+const getTask = async (id) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM todo_list WHERE id = ?',
+    [id]
+  );
+  return result;
+};
 
 const addTask = async (description) => {
   if(!description) return false;
