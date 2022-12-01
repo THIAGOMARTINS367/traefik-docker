@@ -1,6 +1,7 @@
 const taskModel = require('../models/Tasks');
+const taskService = require('../services/TasksService');
 
-const getAllTasks = async (_req, res) => taskModel
+const getAllTasks = async (_req, res) => taskService
   .getAllTasks()
     .then((tasks)=> res.status(200).json(tasks))
     .catch((error)=> {
