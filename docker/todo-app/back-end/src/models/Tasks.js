@@ -31,15 +31,12 @@ const addTask = async (description) => {
 };
 
 const rmTask = async (id) => {
-  if(!id) return false;
-
-  const tasks = await getAllTasks();
-  const newTaskList = tasks.filter(item => item.id !== id);
-
-  writeFile(`${jsonDBPath}tasks.json`, JSON.stringify(newTaskList, 0, 2));
-
-  return true
-}
+  const [result] = await connection.execute(
+    'DELETE FROM todo_list WHERE id = ?',
+    [id],
+  );
+  return result.affectedRows;
+};
 
 const putTask = async (id, description, check) => {
   if(!id) return false;
