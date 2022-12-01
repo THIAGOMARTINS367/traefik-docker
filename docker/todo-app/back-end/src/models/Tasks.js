@@ -39,25 +39,12 @@ const rmTask = async (id) => {
 };
 
 const putTask = async (id, description, check) => {
-  if(!id) return false;
-  
-  const tasks = await getAllTasks();
-  const newTaskList = tasks.map(item => {
-    if (item.id !== id) {
-      return item;
-    } else {
-      return {
-        ...item,
-        description: description || item.description,
-        check: check !== undefined ? check : item.check
-      }
-    }
-  });
-
-  writeFile(`${jsonDBPath}tasks.json`, JSON.stringify(newTaskList, 0, 2));
-
-  return true
-}
+  const [result] = await connection.execute(
+    'UPDATE todo_list SET description = ?, `check` = ? WHERE id = ?',
+    [description, check, id],
+  );
+  return result.changedRows;
+};
 
 const resetTasks = async () => {
   const bkpTasks = await readFile(`${jsonDBPath}tasks.bkp.json`)
