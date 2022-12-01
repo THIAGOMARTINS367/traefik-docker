@@ -1,6 +1,5 @@
 const { connection } = require('./connection');
 const { readFile, writeFile } = require('../utils/fileHandler');
-const uuid = require('uuid').v4;
 
 const jsonDBPath = "./src/database/";
 
@@ -20,21 +19,16 @@ const getTask = async (id) => {
 };
 
 const addTask = async (description) => {
-  if(!description) return false;
-
-  const newTask = {
-    id: uuid(),
+  const [result] = await connection.execute(
+    'INSERT INTO todo_list (description, `check`) VALUES (?, ?)',
+    [description, false],
+  );
+  return {
+    id: result.insertId,
     description,
-    check: false
+    check: false,
   };
-
-  const tasks = await getAllTasks();
-  tasks.push(newTask);
-
-  writeFile(`${jsonDBPath}tasks.json`, JSON.stringify(tasks, 0, 2));
-
-  return newTask
-}
+};
 
 const rmTask = async (id) => {
   if(!id) return false;
