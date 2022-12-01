@@ -9,7 +9,7 @@ const getAllTasks = async (_req, res) => taskService
       res.status(500).end()
     });
 
-const getTask = (req, res) => taskModel
+const getTask = (req, res) => taskService
   .getTask(req.params.id)
     .then((task)=> res.status(200).json(task))
     .catch((error)=> {
