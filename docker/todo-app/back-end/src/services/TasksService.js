@@ -16,4 +16,9 @@ const addTask = async (description) => {
   return newTask;
 };
 
-module.exports = { getAllTasks, getTask, addTask };
+const rmTask = async (id) => {
+  if(!id) return false;
+  await taskModel.rmTask(id);
+};
+
+module.exports = { getAllTasks, getTask, addTask, rmTask };
