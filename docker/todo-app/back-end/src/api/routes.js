@@ -14,6 +14,7 @@ routes.use(express.json());
 routes.use(morgan('tiny'));
 
 routes.post("/registration", userController.addNewUser);
+routes.post("/login", userController.userLogin);
 
 routes.get("/tasks", tasksController.getAllTasks);
 routes.post("/task", tasksController.addTask);
