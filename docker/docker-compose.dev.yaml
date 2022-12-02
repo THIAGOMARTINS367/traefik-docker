@@ -15,7 +15,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     depends_on:
-      - tododb
+      - dev_tododb
     networks:
       - todo-app
 
@@ -34,7 +34,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     depends_on:
-      - todoback
+      - dev_todoback
     networks:
       - todo-app
 
@@ -45,14 +45,14 @@ services:
     working_dir: /usr/local/bin
     restart: always
     environment:
-      - FRONT_HOST=todofront
+      - FRONT_HOST=dev_todofront
     volumes:
       - ./todo-app/tests/e2e:/usr/local/bin/e2e # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     depends_on:
-      - todoback
-      - todofront
+      - dev_todoback
+      - dev_todofront
     networks:
       - todo-app
 
