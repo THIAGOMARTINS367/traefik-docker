@@ -1,4 +1,3 @@
-const taskModel = require('../models/Tasks');
 const taskService = require('../services/TasksService');
 
 const getAllTasks = async (_req, res) => taskService
@@ -41,19 +40,10 @@ const putTask = ({ params, body }, res) => taskService
       res.status(500).end()
     });
 
-const resetTasks = (_req, res) => taskModel
-  .resetTasks()
-    .then(()=> res.status(204).end())
-    .catch((error)=> {
-      console.error(error);
-      res.status(500).end()
-    });
-
 module.exports = {
   getAllTasks,
   getTask,
   addTask,
   rmTask,
   putTask,
-  resetTasks
 }
