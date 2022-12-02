@@ -1,7 +1,4 @@
 const { connection } = require('./connection');
-const { readFile, writeFile } = require('../utils/fileHandler');
-
-const jsonDBPath = "./src/database/";
 
 const getAllTasks = async () => {
   const [result] = await connection.execute(
@@ -46,21 +43,10 @@ const putTask = async (id, description, check) => {
   return result.changedRows;
 };
 
-const resetTasks = async () => {
-  const bkpTasks = await readFile(`${jsonDBPath}tasks.bkp.json`)
-    .then((file)=> JSON.parse(file))
-    .catch(({ message })=> new Error(`Não foi possível consultar o banco de dados:\n${message}`));
-
-  writeFile(`${jsonDBPath}tasks.json`, JSON.stringify(bkpTasks, 0, 2));
-
-  return true
-}
-
 module.exports = {
   getAllTasks,
   getTask,
   addTask,
   rmTask,
   putTask,
-  resetTasks
 }
