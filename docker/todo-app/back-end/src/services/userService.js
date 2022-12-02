@@ -15,6 +15,16 @@ const validateAddNewUserFields = ({ fullName, email, password }) => {
   return error;
 };
 
+const validateUserLoginFields = ({ email, password }) => {
+  const { error } = Joi.object({
+    email: Joi.string().not().empty().email()
+      .required(),
+    password: Joi.string().not().empty().min(6)
+      .required(),
+  }).validate({ email, password });
+  return error;
+};
+
 const getUserByEmail = async (email) => {
   const user = await userModel.getUserByEmail(email);
   return user;
@@ -38,4 +48,24 @@ const addNewUser = async (body) => {
   return { token };
 };
 
-module.exports = { addNewUser };
+const userLogin = async (body) => {
+  const validation = validateUserLoginFields(body);
+  if (validation) {
+    return { error: { code: 400, message: validation.message } };
+  }
+  const { email, password } = body;
+  const userExists = await getUserByEmail(email);
+  if (userExists.length === 0) {
+    return { error: { code: 404, message: 'User does not exist' } };
+  }
+  const validPassword = bcrypt.validateHash(password, userExists[0].password);
+  if (!validPassword) {
+    return { error: { code: 401, message: 'Incorrect email or password' } };
+  }
+  const payload = { ...userExists[0] };
+  delete payload.passwordHash;
+  const token = generateJwtToken('7d', payload, process.env.JWT_SECRET);
+  return { token };
+};
+
+module.exports = { addNewUser, userLogin };
