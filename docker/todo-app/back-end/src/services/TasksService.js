@@ -21,10 +21,10 @@ const rmTask = async ({ id: userId }, id) => {
   await taskModel.rmTask(userId, id);
 };
 
-const putTask = async (id, description, check) => {
+const putTask = async ({ id: userId }, id, description, check) => {
   if (!id) return false;
   if (!description) return false;
-  await taskModel.putTask(id, description, check);
+  await taskModel.putTask(userId, id, description, check);
 };
 
 module.exports = { getAllTasks, getTask, addTask, rmTask, putTask };
