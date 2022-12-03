@@ -16,15 +16,16 @@ const getTask = async (userId, id) => {
   return result;
 };
 
-const addTask = async (description) => {
+const addTask = async (userId, description) => {
   const [result] = await connection.execute(
-    'INSERT INTO todo_list (description, `check`) VALUES (?, ?)',
-    [description, false],
+    'INSERT INTO todo_list (description, `check`, user_id) VALUES (?, ?, ?)',
+    [description, false, userId],
   );
   return {
     id: result.insertId,
     description,
     check: false,
+    userId,
   };
 };
 
