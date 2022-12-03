@@ -29,10 +29,10 @@ const addTask = async (userId, description) => {
   };
 };
 
-const rmTask = async (id) => {
+const rmTask = async (userId, id) => {
   const [result] = await connection.execute(
-    'DELETE FROM todo_list WHERE id = ?',
-    [id],
+    'DELETE FROM todo_list WHERE user_id = ? AND id = ?',
+    [userId, id],
   );
   return result.affectedRows;
 };
