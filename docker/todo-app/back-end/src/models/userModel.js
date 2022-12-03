@@ -5,6 +5,17 @@ const getUserByEmail = async (email) => {
     'SELECT * FROM user WHERE email = ?',
     [email]
   );
+  if (result.length > 0) {
+    const userObj = result[0];
+    const id = userObj['user_id'];
+    delete userObj['user_id'];
+    return [
+      {
+        id,
+        ...userObj,
+      },
+    ];
+  }
   return result;
 };
 
