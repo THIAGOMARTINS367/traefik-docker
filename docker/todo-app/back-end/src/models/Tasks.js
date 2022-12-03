@@ -37,10 +37,10 @@ const rmTask = async (userId, id) => {
   return result.affectedRows;
 };
 
-const putTask = async (id, description, check) => {
+const putTask = async (userId, id, description, check) => {
   const [result] = await connection.execute(
-    'UPDATE todo_list SET description = ?, `check` = ? WHERE id = ?',
-    [description, check, id],
+    "UPDATE todo_list SET description = ?, `check` = ? WHERE user_id = ? AND id = ?",
+    [description, check, userId, id],
   );
   return result.changedRows;
 };
