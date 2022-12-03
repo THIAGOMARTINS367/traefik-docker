@@ -5,8 +5,8 @@ const getAllTasks = async ({ id: userId }) => {
   return tasks;
 };
 
-const getTask = async (id) => {
-  const task = await taskModel.getTask(id);
+const getTask = async ({ id: userId }, id) => {
+  const task = await taskModel.getTask(userId, id);
   return task;
 };
 
