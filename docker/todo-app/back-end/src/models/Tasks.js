@@ -1,8 +1,9 @@
 const { connection } = require('./connection');
 
-const getAllTasks = async () => {
+const getAllTasks = async (userId) => {
   const [result] = await connection.execute(
-    'SELECT * FROM todo_list ORDER BY id',
+    'SELECT * FROM todo_list WHERE user_id = ? ORDER BY id',
+    [userId],
   );
   return result;
 };
