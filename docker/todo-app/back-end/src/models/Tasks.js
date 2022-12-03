@@ -8,10 +8,10 @@ const getAllTasks = async (userId) => {
   return result;
 };
 
-const getTask = async (id) => {
+const getTask = async (userId, id) => {
   const [result] = await connection.execute(
-    'SELECT * FROM todo_list WHERE id = ?',
-    [id]
+    'SELECT * FROM todo_list WHERE user_id = ? AND id = ?',
+    [userId, id]
   );
   return result;
 };
