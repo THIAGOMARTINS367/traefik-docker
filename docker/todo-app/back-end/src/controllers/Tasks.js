@@ -25,7 +25,7 @@ const addTask = (req, res) => taskService
     });
 
 const rmTask = (req, res) => taskService
-  .rmTask(req.params.id)
+  .rmTask(req.userData.data, req.params.id)
     .then(()=> res.status(204).end())
     .catch((error)=> {
       console.error(error);
