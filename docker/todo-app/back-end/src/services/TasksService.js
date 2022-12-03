@@ -10,9 +10,9 @@ const getTask = async ({ id: userId }, id) => {
   return task;
 };
 
-const addTask = async (description) => {
+const addTask = async ({ id: userId }, description) => {
   if (!description) return false;
-  const newTask = await taskModel.addTask(description);
+  const newTask = await taskModel.addTask(userId, description);
   return newTask;
 };
 
