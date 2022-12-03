@@ -32,12 +32,13 @@ const rmTask = (req, res) => taskService
       res.status(500).end()
     });
 
-const putTask = ({ params, body }, res) => taskService
-  .putTask(params.id, body.description, body.check)
-    .then(()=> res.status(204).end())
-    .catch((error)=> {
+const putTask = ({ userData: { data }, params, body }, res) =>
+  taskService
+    .putTask(data, params.id, body.description, body.check)
+    .then(() => res.status(204).end())
+    .catch((error) => {
       console.error(error);
-      res.status(500).end()
+      res.status(500).end();
     });
 
 module.exports = {
