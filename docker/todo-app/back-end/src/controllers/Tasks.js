@@ -1,7 +1,7 @@
 const taskService = require('../services/TasksService');
 
-const getAllTasks = async (_req, res) => taskService
-  .getAllTasks()
+const getAllTasks = async (req, res) => taskService
+  .getAllTasks(req.userData.data)
     .then((tasks)=> res.status(200).json(tasks))
     .catch((error)=> {
       console.error(error);
