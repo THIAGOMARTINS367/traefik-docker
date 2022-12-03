@@ -17,7 +17,7 @@ const getTask = (req, res) => taskService
     });
 
 const addTask = (req, res) => taskService
-  .addTask(req.body.description)
+  .addTask(req.userData.data, req.body.description)
     .then((addedTask)=> res.status(200).json(addedTask))
     .catch((error)=> {
       console.error(error);
