@@ -9,7 +9,7 @@ const getAllTasks = async (req, res) => taskService
     });
 
 const getTask = (req, res) => taskService
-  .getTask(req.params.id)
+  .getTask(req.userData.data, req.params.id)
     .then((task)=> res.status(200).json(task))
     .catch((error)=> {
       console.error(error);
