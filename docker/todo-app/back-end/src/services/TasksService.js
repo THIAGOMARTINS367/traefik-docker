@@ -16,9 +16,9 @@ const addTask = async ({ id: userId }, description) => {
   return newTask;
 };
 
-const rmTask = async (id) => {
+const rmTask = async ({ id: userId }, id) => {
   if (!id) return false;
-  await taskModel.rmTask(id);
+  await taskModel.rmTask(userId, id);
 };
 
 const putTask = async (id, description, check) => {
