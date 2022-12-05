@@ -45,7 +45,7 @@ const addNewUser = async (body) => {
   const payload = { ...newUser };
   delete payload.passwordHash;
   const token = generateJwtToken('7d', payload, process.env.JWT_SECRET);
-  return { token };
+  return { userName: payload.fullName, token };
 };
 
 const userLogin = async (body) => {
@@ -65,7 +65,7 @@ const userLogin = async (body) => {
   const payload = { ...userExists[0] };
   delete payload.passwordHash;
   const token = generateJwtToken('7d', payload, process.env.JWT_SECRET);
-  return { token };
+  return { userName: payload.fullname, token };
 };
 
 module.exports = { addNewUser, userLogin };
