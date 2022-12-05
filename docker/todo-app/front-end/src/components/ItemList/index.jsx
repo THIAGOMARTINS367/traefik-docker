@@ -8,7 +8,8 @@ function ItemList() {
 
   useEffect(()=>{
     if(tasks.length === 0){
-      getTasks();
+      const userToken = JSON.parse(localStorage.getItem('userToken'));
+      getTasks({ authorization: userToken.token });
     }
   }, [tasks, getTasks]);
 
