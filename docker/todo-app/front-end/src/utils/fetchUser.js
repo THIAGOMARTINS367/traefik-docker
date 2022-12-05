@@ -10,10 +10,12 @@ const fetch = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
-})
+});
 
-const registrationApi = async (method, endpoint, body) => fetch
+export const registrationApi = async (method, endpoint, body) => fetch
   .request({ method, url: endpoint, data: body })
   .then(({ status, data }) => ({ status, data }));
 
-export default registrationApi;
+export const loginApi = async (method, endpoint, body) => fetch
+  .request({ method, url: endpoint, data: body })
+  .then(({ status, data }) => ({ status, data }));
