@@ -10,10 +10,12 @@ const fetch = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
-})
+});
 
-const taskApi = async (method, endpoint, body) => fetch
-  .request({ method, url: endpoint, data: body })
+const taskApi = async (method, endpoint, body, headers) => {
+  const response = await fetch.request({ method, url: endpoint, data: body, headers })
     .then(({ status, data }) => ({ status, data }));
+  return response;
+}
 
 export default taskApi
