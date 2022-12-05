@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import registrationApi from '../../utils/fetchUser';
+import { registrationApi } from '../../utils/fetchUser';
 import './style.css';
 
 function UserRegistration() {
