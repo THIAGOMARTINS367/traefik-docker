@@ -1,13 +1,22 @@
 import { createContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import taskApi from '../utils/fetch';
 
 const TaskContext = createContext();
 
 export function TaskProvider ({ children }) {
   const [tasks, setTasks] = useState([]);
+  const history = useHistory();
 
-  const getTasks = async () => taskApi('GET', 'tasks')
-    .then(({ data: tasks }) => setTasks(tasks));
+  const getTasks = async (headers) => taskApi('GET', 'tasks', {}, headers)
+    .then(({ data: tasks }) => setTasks(tasks))
+    .catch((error) => {
+      console.error(error.response.data.message);
+      if (error.response.status === 401) {
+        localStorage.removeItem('userToken');
+        return history.push('/login');
+      };
+    });
 
   const getTask = async (id) => taskApi('GET', `task/${id}`)
     .then(({ data: task }) => task);
