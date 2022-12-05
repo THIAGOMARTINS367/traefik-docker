@@ -7,11 +7,14 @@ import './style.css';
 
 function Tasks() {
   const [loggedUser, setLoggedUser] = useState(false);
+  const [userName, setUserName] = useState('');
   const history = useHistory();
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem('userToken'));
     if (!userToken || !userToken.token) return history.push('/login');
     setLoggedUser(true);
+    const formattedUsername = userToken.userName.split(' ')[0];
+    setUserName(formattedUsername);
   }, []);
 
   const logout = () => {
@@ -23,7 +26,7 @@ function Tasks() {
     <section>
       <header className="header-tasks">
         <div className="header-div-username">
-          Bem Vindo, Usuário !
+          Bem Vindo, { userName } !
         </div>
         <div>
           <button type="button" className="header-button-logout" onClick={ logout }>
