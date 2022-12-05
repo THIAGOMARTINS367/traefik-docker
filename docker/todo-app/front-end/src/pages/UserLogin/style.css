@@ -23,6 +23,7 @@ html, body {
   border-radius: 5px;
   width: 30%;
   padding: 30px;
+  box-shadow: 1px 5px 10px rgb(0, 0, 0);
 }
 
 .div-login-failed-alert {
@@ -76,8 +77,13 @@ html, body {
   color: red;
 }
 
+.form-div-button-login {
+  width: 100%;
+  border-radius: 5px;
+}
+
 .form-button-login {
-  background-color: rgb(0, 119, 182);
+  background-color: rgb(0, 102, 255);
   border: none;
   border-radius: 5px;
   width: 100%;
@@ -86,10 +92,26 @@ html, body {
   font-size: 14pt;
   cursor: pointer;
   margin-top: 20px;
+  box-shadow: 3px 5px 5px rgb(106, 106, 106);
 }
 
 .form-button-login:disabled {
   background-color: rgb(141, 183, 205);
   color: whitesmoke;
   cursor: auto;
+  box-shadow: 0.001px 0.001px 0.001px transparent;
+}
+
+.form-button-login:enabled:hover {
+  background-color: blue;
+}
+
+.div-link-registration {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.link-registration:active, .link-registration:hover {
+  color: rgb(56, 176, 0);
 }
