@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { loginApi } from '../../utils/fetchUser';
 import './style.css';
 
@@ -143,7 +143,7 @@ function UserLogin() {
             * Minímo de 6 caracteres
           </span>
         </div>
-        <div>
+        <div className="form-div-button-login">
           <button
             type="button"
             className="form-button-login"
@@ -152,6 +152,11 @@ function UserLogin() {
           >
             Continuar
           </button>
+        </div>
+        <div className="div-link-registration">
+          <Link to="/registration" className="link-registration">
+            Não possui um conta? Cadastre-se
+          </Link>
         </div>
       </form>
     </section>
