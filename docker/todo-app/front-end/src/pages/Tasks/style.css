@@ -1,18 +1,57 @@
+.header-tasks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #024334;
+  padding: 0.001px 50px;
+  height: 10vh;
+}
+
+.header-div-username {
+  text-align: center;
+  width: 20%;
+  font-size: 18pt;
+  color: white;
+}
+
+.header-button-logout {
+  text-align: center;
+  padding: 5px;
+  width: 100px;
+  font-size: 14pt;
+  border-radius: 5px;
+  border: 1px solid white;
+  box-shadow: 3px 5px 5px;
+  cursor: pointer;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-button-logout:hover {
+  background-color: #fa2b2b;
+  box-shadow: 1px 1px 1px;
+}
+
+.div-img-logo {
+  margin: 20px;
+}
+
 .logo {
   height: 40vmin;
   pointer-events: none;
+  transform: rotate(-10deg);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .logo {
-    animation: logo-spin infinite 20s linear;
+    animation: logo-spin none 1s linear;
   }
 }
 
 .section-todo-list {
   background-color: #036B52;
   text-align: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,9 +62,9 @@
 
 @keyframes logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(15deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(-10deg);
   }
 }
