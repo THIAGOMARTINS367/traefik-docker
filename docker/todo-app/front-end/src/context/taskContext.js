@@ -8,29 +8,49 @@ export function TaskProvider ({ children }) {
   const [tasks, setTasks] = useState([]);
   const history = useHistory();
 
+  const authUserToken = (statusCode) => {
+    if (statusCode === 401) {
+      localStorage.removeItem('userToken');
+      return history.push('/login');
+    };
+  }
+
   const getTasks = async (headers) => taskApi('GET', 'tasks', {}, headers)
     .then(({ data: tasks }) => setTasks(tasks))
     .catch((error) => {
       console.error(error.response.data.message);
-      if (error.response.status === 401) {
-        localStorage.removeItem('userToken');
-        return history.push('/login');
-      };
+      authUserToken(error.response.status);
     });
 
-  const getTask = async (id) => taskApi('GET', `task/${id}`)
-    .then(({ data: task }) => task);
+  const getTask = async (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
+    .then(({ data: task }) => task)
+    .catch((error) => {
+      console.error(error.response.data.message);
+      authUserToken(error.response.status);
+    });
 
-  const addTask = async (description) => taskApi('POST', 'task', { description })
-    .then(getTasks);
+  const addTask = async (description, headers) => taskApi('POST', 'task', { description }, headers)
+    .then(() => getTasks(headers))
+    .catch((error) => {
+      console.error(error.response.data.message);
+      authUserToken(error.response.status);
+    });
 
-  const rmTask = async (id) => taskApi('DELETE', `task/${id}`)
-    .then(getTasks);
+  const rmTask = async (id, headers) => taskApi('DELETE', `task/${id}`, {}, headers)
+    .then(() => getTasks(headers))
+    .catch((error) => {
+      console.error(error.response.data.message);
+      authUserToken(error.response.status);
+    });
 
-  const putTask = async (id, description, check) => taskApi('PUT', `task/${id}`, { description, check })
-    .then(getTasks);
+  const putTask = async (id, description, check, headers) => taskApi('PUT', `task/${id}`, { description, check }, headers)
+    .then(() => getTasks(headers))
+    .catch((error) => {
+      console.error(error.response.data.message);
+      authUserToken(error.response.status);
+    });
   
-  const resetTasks = async () => taskApi('POST', 'debug')
+  const resetTasks = async (headers) => taskApi('POST', 'debug', {}, headers)
     .then(()=>true)
     .catch(()=>console.error('Não foi possível restaurar as tarefas'));
 
@@ -41,7 +61,7 @@ export function TaskProvider ({ children }) {
     addTask,
     rmTask,
     putTask,
-    resetTasks
+    resetTasks,
   };
 
   return (
