@@ -11,6 +11,7 @@ import { TaskProvider } from './context/taskContext';
 import TaskReset from "./components/TaskReset";
 import UserRegistration from "./pages/UserRegistration";
 import Tasks from "./pages/Tasks";
+import UserLogin from "./pages/UserLogin";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/registration" component={ UserRegistration } />
-          <Route path="/login" render={ () => <span>login</span> } />
+          <Route path="/login" component={ UserLogin } />
           <Route exact={true} path="/">
             <Redirect to="/login" />
           </Route>
