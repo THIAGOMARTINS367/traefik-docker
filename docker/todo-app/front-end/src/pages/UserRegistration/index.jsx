@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { registrationApi } from '../../utils/fetchUser';
 import './style.css';
 
@@ -205,6 +205,11 @@ function UserRegistration() {
           >
             Continuar
           </button>
+        </div>
+        <div className="div-link-login">
+          <Link to="/login" className="link-login">
+            Já possui conta? Login
+          </Link>
         </div>
       </form>
     </section>
