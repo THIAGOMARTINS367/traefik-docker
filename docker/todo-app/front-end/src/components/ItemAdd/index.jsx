@@ -7,7 +7,10 @@ function ItemAdd() {
   const [description, setDescription] = useState("");
   const { addTask } = useContext(TaskContext);
 
-  const handleAdd = async () => addTask(description);
+  const handleAdd = async () => {
+    const userToken = JSON.parse(localStorage.getItem('userToken'));
+    addTask(description, { authorization: userToken.token });
+  };
 
   return (
     <div className="item-add">
