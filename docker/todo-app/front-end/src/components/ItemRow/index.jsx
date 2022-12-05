@@ -13,9 +13,15 @@ function ItemRow({ index, id, description, check }) {
   const editHandle = ({ target: { value } }) => 
     setInputDescription(value);
 
-  const editSave = async () => putTask(id, inputDescription, check);
+  const editSave = async () => {
+    const userToken = JSON.parse(localStorage.getItem('userToken'));
+    putTask(id, inputDescription, check, { authorization: userToken.token });
+  };
 
-  const changeCheck = async ({target: { checked }}) => putTask(id, description, checked);
+  const changeCheck = async ({target: { checked }}) => {
+    const userToken = JSON.parse(localStorage.getItem('userToken'));
+    putTask(id, description, checked, { authorization: userToken.token });
+  };
 
   return (
     <>
@@ -64,7 +70,10 @@ function ItemRow({ index, id, description, check }) {
                 ><FaEdit /></button>
                 <button
                   data-testid={`todo-task-remove-btn-${index}`}
-                  onClick={()=>rmTask(id)}
+                  onClick={ ()=> {
+                    const userToken = JSON.parse(localStorage.getItem('userToken'));
+                    rmTask(id, { authorization: userToken.token });
+                  } }
                 ><FaRegWindowClose /></button>
               </div>
             </>
