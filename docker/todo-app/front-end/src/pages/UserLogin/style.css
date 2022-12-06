@@ -7,15 +7,32 @@ html, body {
   overflow: hidden;
 }
 
+.title-login {
+  display: block;
+  color: white;
+  text-align: center;
+  margin-bottom: 2%;
+  font-size: 18pt;
+}
+
+.title-p {
+  margin-top: 20px;
+}
+
+.todo-list-image {
+  transform: rotate(-10deg);
+}
+
 .section-login {
   background-color: #036B52;
   min-height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  height: 100px;
 }
 
 .section-form {
