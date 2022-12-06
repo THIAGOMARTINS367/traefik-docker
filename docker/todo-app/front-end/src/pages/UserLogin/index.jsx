@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginApi } from '../../utils/fetchUser';
+import todoList from '../../to-do-list-64px.png';
 import './style.css';
 
 function UserLogin() {
@@ -77,6 +78,11 @@ function UserLogin() {
 
   return (
     <section className="section-login">
+      <title className="title-login">
+        <img src={ todoList } className="todo-list-image" alt="to-do-list.png" />
+        <br />
+        <p className="title-p">Organize suas tarefas em um só lugar !</p>
+      </title>
       <form className="section-form">
         <div>
           {
