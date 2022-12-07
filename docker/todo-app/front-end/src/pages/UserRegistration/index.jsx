@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { registrationApi } from '../../utils/fetchUser';
+import passwordOpenEye from '../../password-open-eye.png';
+import passwordCloseEye from '../../password-close-eye.png';
 import './style.css';
 
 function UserRegistration() {
@@ -15,6 +17,10 @@ function UserRegistration() {
   });
   const [allValidFields, setAllValidFields] = useState(false);
   const [ registrationFailed, setRegistrationFailed ] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordSelected, setPasswordSelected] = useState({
+    elementTarget: { id: '', style: { border: '', outline: '' } },
+  });
 
   const registerUser = () => {
     registrationApi('POST', '/registration', userData)
@@ -71,6 +77,24 @@ function UserRegistration() {
     }
   }
 
+  const handleClickPassword = (target) => {
+    if (target.id === 'input-password' || target.id === 'input-confirm-password') {
+      const targetParent = target.parentNode;
+      setPasswordSelected(() => ({ elementTarget: targetParent }));
+      passwordSelected.elementTarget.style.outline = '2px solid transparent';
+      passwordSelected.elementTarget.style.border = '1px solid rgb(206, 212, 218)';
+      targetParent.style.outline = '2px solid rgb(0, 119, 182)';
+      targetParent.style.border = '1px solid transparent';
+      return
+    }
+    if (passwordSelected.elementTarget.className === 'form-div-password-eye') {
+      passwordSelected.elementTarget.style.outline = '2px solid transparent';
+      passwordSelected.elementTarget.style.border = '1px solid rgb(206, 212, 218)';
+      setPasswordSelected({ elementTarget: { style: { border: '', outline: '' } } });
+      return
+    }
+  }
+
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem('userToken'));
     if (userToken && userToken.token) {
@@ -92,7 +116,7 @@ function UserRegistration() {
   }, [validFields]);
 
   return (
-    <section className="section-registration">
+    <section className="section-registration" onClick={ ({ target }) => handleClickPassword(target) }>
       <form className="section-form">
         <div className={ registrationFailed ? 'div-registration-failed-alert' : 'div-registration-ok-alert' }>
           Não foi possível efetuar o cadastro !
@@ -146,21 +170,38 @@ function UserRegistration() {
         <div className="form-div-fields">
           <label htmlFor="input-password" className="form-label">Senha</label>
           <br />
-          <input
-            type="password"
-            className="form-input"
-            id="input-password"
-            value={ userData.password }
-            required
-            onChange={
-              ({ target }) => {
-                setUserData((prevState) => ({
-                  ...prevState,
-                  password: target.value,
-                }));
+          <div className="form-div-password-eye">
+            <input
+              type={ showPassword ? 'text' : 'password' }
+              className="form-input form-input-password"
+              id="input-password"
+              value={ userData.password }
+              required
+              onChange={
+                ({ target }) => {
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    password: target.value,
+                  }));
+                }
               }
-            }
-          />
+            />
+            <div className="div-img-password-eye">
+              {
+                showPassword ?
+                (<img
+                  src={ passwordOpenEye }
+                  onClick={() => setShowPassword(false)}
+                  alt="password-open-eye.png"
+                />) :
+                (<img
+                  src={ passwordCloseEye }
+                  onClick={() => setShowPassword(true)}
+                  alt="password-close-eye.png"
+                />)
+              }
+            </div>
+          </div>
           <span className={
               userData.password.length === 0 ||
               validFields.password
@@ -173,20 +214,37 @@ function UserRegistration() {
         <div className="form-div-fields form-confirm-password-field">
           <label htmlFor="input-confirm-password" className="form-label">Confirme Senha</label>
           <br />
-          <input
-            type="password"
-            className="form-input"
-            id="input-confirm-password"
-            value={ passwordConfirmation.password }
-            required
-            onChange={
-              ({ target }) => {
-                setPasswordConfirmation({
-                  password: target.value,
-                })
+          <div className="form-div-password-eye">
+            <input
+              type={ showPassword ? 'text' : 'password' }
+              className="form-input form-input-password"
+              id="input-confirm-password"
+              value={ passwordConfirmation.password }
+              required
+              onChange={
+                ({ target }) => {
+                  setPasswordConfirmation({
+                    password: target.value,
+                  })
+                }
               }
-            }
-          />
+            />
+            <div className="div-img-password-eye">
+              {
+                showPassword ?
+                (<img
+                  src={ passwordOpenEye }
+                  onClick={() => setShowPassword(false)}
+                  alt="password-open-eye.png"
+                />) :
+                (<img
+                  src={ passwordCloseEye }
+                  onClick={() => setShowPassword(true)}
+                  alt="password-close-eye.png"
+                />)
+              }
+            </div>
+          </div>
           <span className={
               validFields.passwordConfirmation === null ||
               validFields.passwordConfirmation
