@@ -42,6 +42,14 @@ html, body {
   margin-bottom: 20px;
 }
 
+.form-div-password-eye {
+  border: 1px solid rgb(206, 212, 218);
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-radius: 5px;
+}
+
 .form-confirm-password-field {
   margin-bottom: 5px;
 }
@@ -63,6 +71,21 @@ html, body {
   color: rgb(62, 72, 84);
   height: 40px;
   padding-left: 10px;
+}
+
+.form-input-password {
+  width: 100%;
+  border: 0.001px solid transparent;
+  outline: 0.001px solid transparent;
+}
+
+.div-img-password-eye {
+  display: inline-block;
+  margin: 0.001px 10px;
+}
+
+.div-img-password-eye img {
+  cursor: pointer;
 }
 
 .form-span-alert-no-valid {
