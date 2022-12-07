@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { loginApi } from '../../utils/fetchUser';
 import todoList from '../../to-do-list-64px.png';
+import passwordOpenEye from '../../password-open-eye.png';
+import passwordCloseEye from '../../password-close-eye.png';
 import './style.css';
 
 function UserLogin() {
@@ -16,6 +18,10 @@ function UserLogin() {
     failed: false,
     message: '',
     status: 0,
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordSelected, setPasswordSelected] = useState({
+    elementTarget: { id: '', style: { border: '', outline: '' } },
   });
 
   const loginUser = () => {
@@ -59,6 +65,22 @@ function UserLogin() {
     }
   }
 
+  const handleClickPassword = (target) => {
+    if (target.id === 'input-password') {
+      const targetParent = target.parentNode;
+      setPasswordSelected(() => ({ elementTarget: targetParent }));
+      targetParent.style.outline = '2px solid rgb(0, 119, 182)';
+      targetParent.style.border = '1px solid transparent';
+      return
+    }
+    if (passwordSelected.elementTarget.id === 'form-div-password-eye') {
+      passwordSelected.elementTarget.style.outline = '2px solid transparent';
+      passwordSelected.elementTarget.style.border = '1px solid rgb(206, 212, 218)';
+      setPasswordSelected({ elementTarget: { style: { border: '', outline: '' } } });
+      return
+    }
+  }
+
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem('userToken'));
     if (userToken && userToken.token) {
@@ -77,7 +99,7 @@ function UserLogin() {
   const { failed, status } = loginFailed;
 
   return (
-    <section className="section-login">
+    <section className="section-login" onClick={ ({ target }) => handleClickPassword(target) }>
       <title className="title-login">
         <img src={ todoList } className="todo-list-image" alt="to-do-list.png" />
         <br />
@@ -125,21 +147,41 @@ function UserLogin() {
         <div className="form-div-fields">
           <label htmlFor="input-password" className="form-label">Senha</label>
           <br />
-          <input
-            type="password"
-            className="form-input"
-            id="input-password"
-            value={ userData.password }
-            required
-            onChange={
-              ({ target }) => {
-                setUserData((prevState) => ({
-                  ...prevState,
-                  password: target.value,
-                }));
+          <div
+            id="form-div-password-eye"
+            className="form-div-password-eye"
+          >
+            <input
+              type={ showPassword ? 'text' : 'password' }
+              className="form-input form-input-password"
+              id="input-password"
+              value={ userData.password }
+              required
+              onChange={
+                ({ target }) => {
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    password: target.value,
+                  }));
+                }
               }
-            }
-          />
+            />
+            <div className="div-img-password-eye">
+              {
+                showPassword ?
+                (<img
+                  src={ passwordOpenEye }
+                  onClick={() => setShowPassword(false)}
+                  alt="password-open-eye.png"
+                />) :
+                (<img
+                  src={ passwordCloseEye }
+                  onClick={() => setShowPassword(true)}
+                  alt="password-close-eye.png"
+                />)
+              }
+            </div>
+          </div>
           <span className={
               userData.password.length === 0 ||
               validFields.password
