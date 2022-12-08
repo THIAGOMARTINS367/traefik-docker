@@ -16,8 +16,9 @@
     "web-vitals": "1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.production.local",
+    "dev": "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.development.local",
+    "build": "node -r dotenv/config ./node_modules/.bin/react-scripts build dotenv_config_path=.env.production.local",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
