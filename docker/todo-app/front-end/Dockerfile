@@ -10,4 +10,4 @@ COPY ["./","./"]
 
 RUN npm install
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT if [ $DEV = true ]; then npm run dev; else npm start; fi
