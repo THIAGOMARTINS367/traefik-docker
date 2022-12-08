@@ -10,4 +10,4 @@ COPY ["./","./"]
 
 RUN npm install
 
-ENTRYPOINT if [ $DEV = true ]; then npm rum dev; else npm start; fi
+ENTRYPOINT if [ $DEV = true ]; then npm run dev; else npm start; fi
