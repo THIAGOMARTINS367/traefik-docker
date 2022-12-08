@@ -28,7 +28,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - REACT_APP_API_HOST=localhost
+      - DEV=true # Variável nescessária apenas para ambiente DEV
     volumes:
       - ./todo-app/front-end/src:/usr/src/app-frontend/src # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
@@ -46,6 +46,8 @@ services:
     restart: always
     environment:
       - FRONT_HOST=dev_todofront
+      - FRONT_PORT=3000
+      # - CHROME_BIN= # Caso na seja criada terá valor "null" nos testes 
     volumes:
       - ./todo-app/tests/e2e:/usr/local/bin/e2e # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
