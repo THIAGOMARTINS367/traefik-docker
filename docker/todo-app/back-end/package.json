@@ -5,8 +5,8 @@
   "author": "Trybe",
   "main": "./src/api/server.js",
   "scripts": {
-    "start": "node .",
-    "dev": "nodemon --watch \"./src/**\" ./src/server.js",
+    "start": "DOTENV_CONFIG_PATH=.env.production.local node -r dotenv/config src/api/server.js",
+    "dev": "DOTENV_CONFIG_PATH=.env.development.local nodemon --watch \"./src/**\" -r dotenv/config src/api/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
