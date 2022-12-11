@@ -3,7 +3,8 @@ services:
   dev_todoback:
     container_name: dev_todoback
     image: todobackend
-    build: ./todo-app/back-end
+    build:
+      context: ./todo-app/back-end
     working_dir: /usr/src/app-backend
     restart: always
     ports:
@@ -22,7 +23,8 @@ services:
   dev_todofront:
     container_name: dev_todofront
     image: todofrontend
-    build: ./todo-app/front-end
+    build:
+      context: ./todo-app/front-end
     working_dir: /usr/src/app-frontend
     restart: always
     ports:
@@ -41,7 +43,8 @@ services:
   dev_todotests:
     container_name: dev_todotests
     image: todotests
-    build: ./todo-app/tests
+    build:
+      context: ./todo-app/tests
     working_dir: /usr/local/bin
     restart: always
     env_file:
@@ -59,7 +62,7 @@ services:
   dev_tododb:
     container_name: dev_tododb
     image: tododb
-    build: 
+    build:
       context: ./todo-app/database
       dockerfile: ./Dockerfile.dev
     working_dir: /usr/src/database
