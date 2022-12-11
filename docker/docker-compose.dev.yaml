@@ -44,10 +44,8 @@ services:
     build: ./todo-app/tests
     working_dir: /usr/local/bin
     restart: always
-    environment:
-      - FRONT_HOST=dev_todofront
-      - FRONT_PORT=3000
-      # - CHROME_BIN= # Caso na seja criada terá valor "null" nos testes 
+    env_file:
+      - ./todo-app/tests/.env.development.local
     volumes:
       - ./todo-app/tests/e2e:/usr/local/bin/e2e # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
@@ -64,6 +62,8 @@ services:
     build: ./todo-app/database
     working_dir: /usr/src/database
     restart: "always"
+    env_file:
+      - ./todo-app/database/.env.development.local
     ports:
       - 3003:3306
     platform: linux/x86_64
@@ -71,7 +71,6 @@ services:
       - SYS_NICE # Deve omitir alertas menores
     volumes:
       - ./todo-app/database:/usr/src/database # Mapeamento apenas para ambiente DEV
-      - ./todo-app/database/.env.development.local:/usr/src/database/.env
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     healthcheck:
