@@ -1,4 +1,5 @@
-FROM mysql:8.0.21 AS todo_list_db
+# development Dockerfile
+FROM mysql:8.0.21 AS todo_list_db_dev
 
 WORKDIR /usr/src/database
 
