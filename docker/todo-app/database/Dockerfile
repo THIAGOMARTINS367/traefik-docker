@@ -9,5 +9,3 @@ ADD /initial_users.sql /docker-entrypoint-initdb.d/1_initial_users.sql
 ADD /initial_todo_list.sql /docker-entrypoint-initdb.d/2_initial_todo_list.sql
 
 RUN chmod -R 775 /docker-entrypoint-initdb.d
-
-ENV MYSQL_ROOT_PASSWORD 123456
