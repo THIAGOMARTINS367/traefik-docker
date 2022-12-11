@@ -59,7 +59,9 @@ services:
   dev_tododb:
     container_name: dev_tododb
     image: tododb
-    build: ./todo-app/database
+    build: 
+      context: ./todo-app/database
+      dockerfile: ./Dockerfile.dev
     working_dir: /usr/src/database
     restart: "always"
     env_file:
