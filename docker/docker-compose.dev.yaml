@@ -48,7 +48,7 @@ services:
     working_dir: /usr/local/bin
     restart: always
     env_file:
-      - ./todo-app/tests/.env.development.local
+      - ./todo-app/tests/.env.development.local # Arquivo ".env.development.local" apenas para ambiente DEV
     volumes:
       - ./todo-app/tests/e2e:/usr/local/bin/e2e # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
@@ -64,11 +64,11 @@ services:
     image: tododb
     build:
       context: ./todo-app/database
-      dockerfile: ./Dockerfile.dev
+      dockerfile: ./Dockerfile.dev # "Dockerfile.dev" apenas para ambiente DEV
     working_dir: /usr/src/database
     restart: "always"
     env_file:
-      - ./todo-app/database/.env.development.local
+      - ./todo-app/database/.env.development.local # Arquivo ".env.development.local" apenas para ambiente DEV
     ports:
       - 3003:3306
     platform: linux/x86_64
