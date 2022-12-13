@@ -15,7 +15,7 @@ export function TaskProvider ({ children }) {
     };
   }
 
-  const getTasks = async (headers) => taskApi('GET', 'tasks', {}, headers)
+  const getTasks = (headers) => taskApi('GET', 'tasks', {}, headers)
     .then((tasksData) => {
       if (tasksData.data) {
         const tasks = tasksData.data;
@@ -33,7 +33,7 @@ export function TaskProvider ({ children }) {
       authUserToken(error.response.status);
     });
 
-  const getTask = async (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
+  const getTask = (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
     .then((taskData) => {
       if (taskData.data) {
         const task = taskData.data;
