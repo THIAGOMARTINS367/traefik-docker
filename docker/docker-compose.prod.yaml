@@ -49,8 +49,8 @@ services:
       context: ./todo-app/tests
     working_dir: /usr/local/bin
     restart: always
-    env_file:
-      - ./todo-app/tests/.env.production.local
+    # env_file:
+    #   - ./todo-app/tests/.env.production.local
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -68,8 +68,8 @@ services:
       dockerfile: ./Dockerfile.prod
     working_dir: /usr/src/database
     restart: "always"
-    env_file:
-      - ./todo-app/database/.env.production.local
+    # env_file:
+    #   - ./todo-app/database/.env.production.local
     ports:
       - 3004:3306
     platform: linux/x86_64
