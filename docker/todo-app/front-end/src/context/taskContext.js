@@ -23,7 +23,11 @@ export function TaskProvider ({ children }) {
       }
     })
     .catch((error) => {
-      console.error(error.response.data.message);
+      if (error.response.data) {
+        console.error(error.response.data.message);
+      } else {
+        console.error('ERROR: GET /tasks: failed to get tasks');
+      }
       authUserToken(error.response.status);
     });
 
@@ -37,7 +41,11 @@ export function TaskProvider ({ children }) {
       }
     })
     .catch((error) => {
-      console.error(error.response.data.message);
+      if (error.response.data) {
+        console.error(error.response.data.message);
+      } else {
+        console.error(`ERROR: GET /task/${id}: failed to get task`);
+      }
       authUserToken(error.response.status);
     });
 
