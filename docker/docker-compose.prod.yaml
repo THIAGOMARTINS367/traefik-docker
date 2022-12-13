@@ -52,23 +52,6 @@ services:
       - todo-app
       - traefik
 
-  todotests:
-    container_name: todotests
-    # image: todotests
-    build: ./todo-app/tests
-    working_dir: /usr/local/bin
-    restart: always
-    env_file:
-      - ../stack.env # Configuração necessária para o Portainer
-    volumes:
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
-    depends_on:
-      - todoback
-      - todofront
-    networks:
-      - todo-app
-
   tododb:
     container_name: tododb
     # image: tododb
