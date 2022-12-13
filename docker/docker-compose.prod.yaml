@@ -13,13 +13,13 @@ services:
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.todoapp.rule=Host(`todoapi.thiago.fgarioli.com.br`)"
-      - "traefik.http.routers.todoapp.tls=true"
-      - "traefik.http.routers.todoapp.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.todoapp.entrypoints=websecure"
-      - "traefik.http.services.todoapp.loadbalancer.server.port=3121"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.todoapp.rule=Host(`todoapi.thiago.fgarioli.com.br`)"
+    #   - "traefik.http.routers.todoapp.tls=true"
+    #   - "traefik.http.routers.todoapp.tls.certresolver=letsencrypt"
+    #   - "traefik.http.routers.todoapp.entrypoints=websecure"
+    #   - "traefik.http.services.todoapp.loadbalancer.server.port=3121"
     depends_on:
       - tododb
     networks:
