@@ -9,7 +9,7 @@ function ItemList() {
   useEffect(()=>{
     if(tasks.length === 0){
       const userToken = JSON.parse(localStorage.getItem('userToken'));
-      getTasks({ authorization: userToken.token });
+      setTimeout(() => getTasks({ authorization: userToken.token }), 5000);
     }
   }, [tasks, getTasks]);
 
