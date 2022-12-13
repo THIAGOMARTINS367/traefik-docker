@@ -16,10 +16,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.todoapp-backend.rule=Host(`todoapp.thiago.fgarioli.com.br`)"
-      - "traefik.http.routers.todoapp.tls=true"
-      - "traefik.http.routers.todoapp.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.todoapp.entrypoints=websecure"
-      - "traefik.http.services.todoapp.loadbalancer.server.port=3121"
+      - "traefik.http.routers.todoapp-backend.tls=true"
+      - "traefik.http.routers.todoapp-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.todoapp-backend.entrypoints=websecure"
+      - "traefik.http.services.todoapp-backend.loadbalancer.server.port=3121"
     depends_on:
       - tododb
     networks:
