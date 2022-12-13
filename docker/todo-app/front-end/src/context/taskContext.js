@@ -16,14 +16,26 @@ export function TaskProvider ({ children }) {
   }
 
   const getTasks = async (headers) => taskApi('GET', 'tasks', {}, headers)
-    .then(({ data: tasks }) => setTasks(tasks))
+    .then((tasksData) => {
+      if (tasksData.data) {
+        const tasks = tasksData.data;
+        setTasks(tasks);
+      }
+    })
     .catch((error) => {
       console.error(error.response.data.message);
       authUserToken(error.response.status);
     });
 
   const getTask = async (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
-    .then(({ data: task }) => task)
+    .then((taskData) => {
+      if (taskData.data) {
+        const task = taskData.data;
+        return task;
+      } else {
+        return false;
+      }
+    })
     .catch((error) => {
       console.error(error.response.data.message);
       authUserToken(error.response.status);
