@@ -3,8 +3,10 @@ import axios from 'axios';
 const HOST = process.env.REACT_APP_API_HOST || "localhost";
 const PORT = process.env.REACT_APP_API_PORT || 3001;
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
 const fetch = axios.create({
-  baseURL: `http://${HOST}:${PORT}`,
+  baseURL: apiBaseUrl || `http://${HOST}:${PORT}`,
   timeout: 1000,
   headers: {
     'Accept': 'application/json',
