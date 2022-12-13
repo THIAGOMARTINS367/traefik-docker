@@ -22,17 +22,15 @@ function UserRegistration() {
     elementTarget: { id: '', style: { border: '', outline: '' } },
   });
 
-  const registerUser = () => {
-    registrationApi('POST', '/registration', userData)
-      .then(({ data: token }) => {
-        localStorage.setItem('userToken', JSON.stringify(token));
-        history.push('/tasks')
-      })
-      .catch((error) => {
-        setRegistrationFailed(true);
-        console.error('ERROR:', error.response.data.message);
-      });
-  };
+  const registerUser = () => registrationApi('POST', '/registration', userData)
+    .then(({ data: token }) => {
+      localStorage.setItem('userToken', JSON.stringify(token));
+      history.push('/tasks')
+    })
+    .catch((error) => {
+      setRegistrationFailed(true);
+      console.error('ERROR:', error.response.data.message);
+    });
 
   const validatePassword = () => {
     if (passwordConfirmation.password.length === 0) return;
