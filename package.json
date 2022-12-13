@@ -6,9 +6,10 @@
   "scripts": {
     "compose:up:prod": "(cd docker && docker-compose -f docker-compose.prod.yaml up -d)",
     "compose:down:prod": "(cd docker && docker-compose -f docker-compose.prod.yaml down --remove-orphans)",
+    "compose:rm:images:prod": "(cd docker && docker image rm todofrontend todobackend todotests tododb)",
     "compose:up:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml up -d)",
     "compose:down:dev": "(cd docker && docker-compose -f docker-compose.dev.yaml down --remove-orphans)",
-    "compose:rm:images": "(cd docker && docker image rm todofrontend todobackend todotests tododb)",
+    "compose:rm:images:dev": "(cd docker && docker image rm dev_todofrontend dev_todobackend dev_todotests dev_tododatabase)",
     "test": "jest --runInBand --detectOpenHandles --forceExit --verbose"
   },
   "repository": {
