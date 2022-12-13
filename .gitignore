@@ -3,3 +3,4 @@ node_modules
 trybe-todo-list-eval-*
 .vscode
 export
+portainer-data
