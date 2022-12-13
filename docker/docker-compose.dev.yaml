@@ -2,7 +2,7 @@ version: "3"
 services:
   dev_todoback:
     container_name: dev_todoback
-    image: todobackend
+    image: dev_todobackend
     build:
       context: ./todo-app/back-end
     working_dir: /usr/src/app-backend
@@ -22,7 +22,7 @@ services:
 
   dev_todofront:
     container_name: dev_todofront
-    image: todofrontend
+    image: dev_todofrontend
     build:
       context: ./todo-app/front-end
     working_dir: /usr/src/app-frontend
@@ -42,7 +42,7 @@ services:
 
   dev_todotests:
     container_name: dev_todotests
-    image: todotests
+    image: dev_todotests
     build:
       context: ./todo-app/tests
     working_dir: /usr/local/bin
@@ -61,7 +61,7 @@ services:
 
   dev_tododb:
     container_name: dev_tododb
-    image: tododb
+    image: dev_tododatabase
     build:
       context: ./todo-app/database
       dockerfile: ./Dockerfile.dev # "Dockerfile.dev" apenas para ambiente DEV
