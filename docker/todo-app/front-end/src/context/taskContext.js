@@ -23,6 +23,8 @@ export function TaskProvider ({ children }) {
       }
     })
     .catch((error) => {
+      console.log('error:', error);
+      console.log('error.response:', error.response);
       if (error.response.data) {
         console.error(error.response.data.message);
       } else {
