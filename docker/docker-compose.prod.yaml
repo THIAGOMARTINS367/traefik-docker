@@ -2,7 +2,7 @@ version: "3"
 services:
   todoback:
     container_name: todoback
-    image: todobackend
+    # image: todobackend
     build: ./todo-app/back-end
     working_dir: /usr/src/app-backend
     restart: always
@@ -18,7 +18,7 @@ services:
 
   todofront:
     container_name: todofront
-    image: todofrontend
+    # image: todofrontend
     build: ./todo-app/front-end
     working_dir: /usr/src/app-frontend
     restart: always
@@ -42,7 +42,7 @@ services:
 
   todotests:
     container_name: todotests
-    image: todotests
+    # image: todotests
     build: ./todo-app/tests
     working_dir: /usr/local/bin
     restart: always
@@ -59,7 +59,7 @@ services:
 
   tododb:
     container_name: tododb
-    image: tododb
+    # image: tododb
     build:
       context: ./todo-app/database
       dockerfile: ./Dockerfile.prod
