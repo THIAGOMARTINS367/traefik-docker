@@ -7,7 +7,7 @@ services:
     working_dir: /usr/src/app-backend
     restart: always
     env_file:
-      - stack.env # Configuração necessária para o Portainer
+      - todo-app.env # Configuração necessária para o Portainer
     ports:
       - 3121:3121
     volumes:
@@ -25,7 +25,7 @@ services:
     working_dir: /usr/src/app-frontend
     restart: always
     env_file:
-      - stack.env # Configuração necessária para o Portainer
+      - todo-app.env # Configuração necessária para o Portainer
     ports:
       - 3120:3120
     volumes:
@@ -51,7 +51,7 @@ services:
     working_dir: /usr/local/bin
     restart: always
     env_file:
-      - stack.env # Configuração necessária para o Portainer
+      - todo-app.env # Configuração necessária para o Portainer
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -70,7 +70,7 @@ services:
     working_dir: /usr/src/database
     restart: "always"
     env_file:
-      - stack.env # Configuração necessária para o Portainer
+      - todo-app.env # Configuração necessária para o Portainer
     ports:
       - 3004:3306
     platform: linux/x86_64
