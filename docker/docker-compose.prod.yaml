@@ -15,7 +15,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.todoapp-backend.rule=Host(`todoapp.thiago.fgarioli.com.br`)"
+      - "traefik.http.routers.todoapp-backend.rule=Host(`todoapi.thiago.fgarioli.com.br`)"
       - "traefik.http.routers.todoapp-backend.tls=true"
       - "traefik.http.routers.todoapp-backend.tls.certresolver=letsencrypt"
       - "traefik.http.routers.todoapp-backend.entrypoints=websecure"
