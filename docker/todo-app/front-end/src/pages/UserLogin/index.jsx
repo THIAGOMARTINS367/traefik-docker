@@ -24,19 +24,17 @@ function UserLogin() {
     elementTarget: { id: '', style: { border: '', outline: '' } },
   });
 
-  const loginUser = () => {
-    loginApi('POST', '/login', userData)
-      .then(({ data: token }) => {
-        localStorage.setItem('userToken', JSON.stringify(token));
-        history.push('/tasks')
-      })
-      .catch((error) => {
-        const message = error.response.data.message;
-        const status = error.response.status;
-        setLoginFailed({ failed: true, message, status });
-        console.error('ERROR:', message);
-      });
-  };
+  const loginUser = () => loginApi('POST', '/login', userData)
+    .then(({ data: token }) => {
+      localStorage.setItem('userToken', JSON.stringify(token));
+      history.push('/tasks')
+    })
+    .catch((error) => {
+      const message = error.response.data.message;
+      const status = error.response.status;
+      setLoginFailed({ failed: true, message, status });
+      console.error('ERROR:', message);
+    });
 
   const checkAllFields = () => {
     const {
