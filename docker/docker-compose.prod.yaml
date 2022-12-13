@@ -1,44 +1,91 @@
-version: '3'
+version: "3"
 services:
   todoback:
+    container_name: todoback
     image: todobackend
-    build: ./todo-app/back-end
+    build:
+      context: ./todo-app/back-end
+    working_dir: /usr/src/app-backend
     restart: always
+    ports:
+      - 3121:3121
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    depends_on:
+      - tododb
     networks:
       - todo-app
 
   todofront:
+    container_name: todofront
     image: todofrontend
-    build: ./todo-app/front-end
+    build:
+      context: ./todo-app/front-end
+    working_dir: /usr/src/app-frontend
     restart: always
-    depends_on:
-      - todoback
-    environment:
-      - REACT_APP_API_HOST=todoback
+    ports:
+      - 3120:3120
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.todoapp.rule=Host(`todoapp.thiago.fgarioli.com.br`)"
       - "traefik.http.routers.todoapp.tls=true"
       - "traefik.http.routers.todoapp.tls.certresolver=letsencrypt"
       - "traefik.http.routers.todoapp.entrypoints=websecure"
-      - "traefik.http.services.todoapp.loadbalancer.server.port=3000"
+      - "traefik.http.services.todoapp.loadbalancer.server.port=3120"
+    depends_on:
+      - todoback
     networks:
-      - traefik
       - todo-app
-    
+      - traefik
+
   todotests:
+    container_name: todotests
     image: todotests
-    build: ./todo-app/tests
+    build:
+      context: ./todo-app/tests
+    working_dir: /usr/local/bin
     restart: always
-    environment:
-      - FRONT_HOST=todofront
+    env_file:
+      - ./todo-app/tests/.env.production.local
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     depends_on:
       - todoback
       - todofront
     networks:
       - todo-app
 
+  tododb:
+    container_name: tododb
+    image: tododb
+    build:
+      context: ./todo-app/database
+      dockerfile: ./Dockerfile.prod
+    working_dir: /usr/src/database
+    restart: "always"
+    env_file:
+      - ./todo-app/database/.env.production.local
+    ports:
+      - 3004:3306
+    platform: linux/x86_64
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    networks:
+      - todo-app
+
 networks:
+  todo-app:
   traefik:
     external: true
-  todo-app:
