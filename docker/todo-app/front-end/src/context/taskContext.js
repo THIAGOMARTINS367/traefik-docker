@@ -6,6 +6,7 @@ const TaskContext = createContext();
 
 export function TaskProvider ({ children }) {
   const [tasks, setTasks] = useState([]);
+  const [ loadingTasks, setLoadingTasks ] = useState('');
   const history = useHistory();
 
   const authUserToken = (statusCode) => {
@@ -15,50 +16,62 @@ export function TaskProvider ({ children }) {
     };
   }
 
-  const getTasks = (headers) => taskApi('GET', 'tasks', {}, headers)
-    .then(({ data: tasks }) => setTasks(tasks))
+  const getTasks = async (headers) => taskApi('GET', 'tasks', {}, headers)
+    .then(({ data: tasks }) => {
+      setLoadingTasks('');
+      setTasks(tasks.reverse());
+    })
     .catch((error) => {
-      console.error('error:', error);
-      console.error('JSON.stringify(error):', JSON.stringify(error));
-      console.error('error.response:', error.response);
       if (error.response) {
         console.error(error.response.data.message);
         authUserToken(error.response.status);
       } else {
-        console.error('ERROR: GET /tasks: failed to get tasks');
+        getTasks(headers);
       }
     });
 
-  const getTask = (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
+  const getTask = async (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
     .then(({ data: task }) => task)
     .catch((error) => {
       if (error.response) {
         console.error(error.response.data.message);
         authUserToken(error.response.status);
       } else {
-        console.error(`ERROR: GET /task/${id}: failed to get task`);
+        getTask(headers);
       }
     });
 
   const addTask = async (description, headers) => taskApi('POST', 'task', { description }, headers)
     .then(() => getTasks(headers))
     .catch((error) => {
-      console.error(error.response.data.message);
-      authUserToken(error.response.status);
+      if (error.response) {
+        console.error(error.response.data.message);
+        authUserToken(error.response.status);
+      } else {
+        getTasks(headers);
+      }
     });
 
   const rmTask = async (id, headers) => taskApi('DELETE', `task/${id}`, {}, headers)
     .then(() => getTasks(headers))
     .catch((error) => {
-      console.error(error.response.data.message);
-      authUserToken(error.response.status);
+      if (error.response) {
+        console.error(error.response.data.message);
+        authUserToken(error.response.status);
+      } else {
+        getTasks(headers);
+      }
     });
 
   const putTask = async (id, description, check, headers) => taskApi('PUT', `task/${id}`, { description, check }, headers)
     .then(() => getTasks(headers))
     .catch((error) => {
-      console.error(error.response.data.message);
-      authUserToken(error.response.status);
+      if (error.response) {
+        console.error(error.response.data.message);
+        authUserToken(error.response.status);
+      } else {
+        getTasks(headers);
+      }
     });
   
   const resetTasks = async (headers) => taskApi('POST', 'debug', {}, headers)
@@ -73,6 +86,8 @@ export function TaskProvider ({ children }) {
     rmTask,
     putTask,
     resetTasks,
+    loadingTasks,
+    setLoadingTasks,
   };
 
   return (
