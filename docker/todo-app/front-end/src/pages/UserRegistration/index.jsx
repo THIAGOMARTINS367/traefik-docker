@@ -31,7 +31,12 @@ function UserRegistration() {
     })
     .catch((error) => {
       setRegistrationFailed(true);
-      console.error('ERROR:', error.response.data.message);
+      if (error.response) {
+        console.error('ERROR:', error.response.data.message);
+      } else {
+        console.error(`ERROR: unable to register user`);
+      }
+      setTimeout(() => window.location.reload(false), 3000);
     });
 
   const validatePassword = () => {
