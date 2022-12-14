@@ -124,7 +124,7 @@ function UserRegistration() {
     <section className="section-registration" onClick={ ({ target }) => handleClickPassword(target) }>
       <form className="section-form">
         <div className={ registrationFailed ? 'div-registration-failed-alert' : 'div-registration-ok-alert' }>
-          Não foi possível efetuar o cadastro !
+          Não foi possível efetuar o cadastro, tente novamente !
         </div>
         <div className="form-div-fields">
           <label htmlFor="input-name" className="form-label">Nome</label>
