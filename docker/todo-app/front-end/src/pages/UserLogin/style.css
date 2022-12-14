@@ -43,14 +43,11 @@ html, body {
   box-shadow: 1px 5px 10px rgb(0, 0, 0);
 }
 
-.div-login-failed-alert {
+.div-login-alert {
   text-align: center;
   width: 100%;
   color: red;
-}
-
-.div-login-ok-alert {
-  display: none;
+  font-size: 14pt;
 }
 
 .form-div-fields {
