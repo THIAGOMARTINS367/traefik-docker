@@ -16,40 +16,30 @@ export function TaskProvider ({ children }) {
   }
 
   const getTasks = (headers) => taskApi('GET', 'tasks', {}, headers)
-    .then((tasksData) => {
-      console.log('tasksData:', tasksData);
-      if (tasksData.data) {
-        const tasks = tasksData.data;
-        setTasks(tasks);
-      }
-    }).catch((error) => {
+    .then(({ data: tasks }) => setTasks(tasks))
+    .catch((error) => {
       console.error('error:', error);
       console.error('JSON.stringify(error):', JSON.stringify(error));
       console.error('error.response:', error.response);
-      if (error.response.data) {
+      if (error.response) {
         console.error(error.response.data.message);
+        authUserToken(error.response.status);
       } else {
         console.error('ERROR: GET /tasks: failed to get tasks');
+        setTimeout(() => window.location.reload(false), 3000);
       }
-      authUserToken(error.response.status);
     });
 
   const getTask = (id, headers) => taskApi('GET', `task/${id}`, {}, headers)
-    .then((taskData) => {
-      if (taskData.data) {
-        const task = taskData.data;
-        return task;
-      } else {
-        return false;
-      }
-    })
+    .then(({ data: task }) => task)
     .catch((error) => {
-      if (error.response.data) {
+      if (error.response) {
         console.error(error.response.data.message);
+        authUserToken(error.response.status);
       } else {
         console.error(`ERROR: GET /task/${id}: failed to get task`);
+        window.location.reload(false);
       }
-      authUserToken(error.response.status);
     });
 
   const addTask = async (description, headers) => taskApi('POST', 'task', { description }, headers)
