@@ -17,14 +17,14 @@ export function TaskProvider ({ children }) {
 
   const getTasks = (headers) => taskApi('GET', 'tasks', {}, headers)
     .then((tasksData) => {
+      console.log('tasksData:', tasksData);
       if (tasksData.data) {
         const tasks = tasksData.data;
         setTasks(tasks);
       }
-    })
-    .catch((error) => {
-      console.log('error:', error);
-      console.log('error.response:', error.response);
+    }).catch((error) => {
+      console.error('error:', error);
+      console.error('error.response:', error.response);
       if (error.response.data) {
         console.error(error.response.data.message);
       } else {
