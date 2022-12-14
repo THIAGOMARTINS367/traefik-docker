@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ItemAdd from '../../components/ItemAdd';
 import ItemList from '../../components/ItemList';
+import TaskContext from '../../context/taskContext';
 import logo from '../../to-do-list.png';
 import './style.css';
 
 function Tasks() {
   const [loggedUser, setLoggedUser] = useState(false);
   const [userName, setUserName] = useState('');
+  const { loadingTasks, setLoadingTasks } = useContext(TaskContext);
   const history = useHistory();
+
   useEffect(() => {
+    setLoadingTasks('Carregando...');
     const userToken = JSON.parse(localStorage.getItem('userToken'));
     if (!userToken || !userToken.token) return history.push('/login');
     setLoggedUser(true);
@@ -23,7 +27,7 @@ function Tasks() {
   };
 
   return (
-    <section>
+    <section className="section-page-tasks">
       <header className="header-tasks">
         <div className="header-div-username">
           Bem Vindo, { userName } !
@@ -41,8 +45,9 @@ function Tasks() {
               <div className="div-img-logo">
                 <img src={ logo } className="logo" alt="logo" />
               </div>
-              <span><h2>Lista das suas Tarefas</h2></span>
+              <span><h2>Suas Tarefas</h2></span>
               <ItemAdd />
+              <div className="div-loading-tasks">{ loadingTasks }</div>
               <ItemList />
             </>)
         }
