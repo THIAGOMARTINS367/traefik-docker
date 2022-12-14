@@ -4,11 +4,19 @@ import ItemRow from '../ItemRow/index';
 import './styles.css';
 
 function ItemList() {
-  const { tasks, getTasks } = useContext(TaskContext);
+  const {
+    tasks,
+    getTasks,
+  } = useContext(TaskContext);
 
   useEffect(()=>{
     const userToken = JSON.parse(localStorage.getItem('userToken'));
-    setInterval(() => getTasks({ authorization: userToken.token }), 3000);
+    getTasks({ authorization: userToken.token });
+    const getTasksAutomatically = setInterval(
+      () => getTasks({ authorization: userToken.token }),
+      3000,
+    );
+    return () => clearInterval(getTasksAutomatically);
   }, []);
 
   // useEffect(()=>{
