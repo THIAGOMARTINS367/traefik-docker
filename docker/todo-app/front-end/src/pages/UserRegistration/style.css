@@ -26,14 +26,10 @@ html, body {
   box-shadow: 1px 5px 10px rgb(0, 0, 0);
 }
 
-.div-registration-failed-alert {
+.div-registration-alert {
   text-align: center;
   width: 100%;
   color: red;
-}
-
-.div-registration-ok-alert {
-  display: none;
 }
 
 .form-div-fields {
