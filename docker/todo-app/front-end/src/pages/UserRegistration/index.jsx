@@ -23,7 +23,9 @@ function UserRegistration() {
   });
 
   const registerUser = () => registrationApi('POST', '/registration', userData)
-    .then(({ data: token }) => {
+    .then((registrationData) => {
+      console.log('registrationData:', registrationData);
+      const token = registrationData.data;
       localStorage.setItem('userToken', JSON.stringify(token));
       history.push('/tasks')
     })
