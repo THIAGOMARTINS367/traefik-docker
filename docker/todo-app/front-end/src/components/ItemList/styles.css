@@ -1,5 +1,16 @@
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #024334;
+}
+
 .item-list {
+  height: 27vh;
+  overflow: auto;
   text-align: left;
-  width: 35%;
+  width: 50%;
   margin: 0;
 }
