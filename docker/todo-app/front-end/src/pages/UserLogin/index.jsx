@@ -25,7 +25,9 @@ function UserLogin() {
   });
 
   const loginUser = () => loginApi('POST', '/login', userData)
-    .then(({ data: token }) => {
+    .then((loginData) => {
+      console.log('loginData:', loginData);
+      const token = loginData.data;
       localStorage.setItem('userToken', JSON.stringify(token));
       history.push('/tasks')
     })
