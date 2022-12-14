@@ -24,6 +24,7 @@ export function TaskProvider ({ children }) {
       }
     }).catch((error) => {
       console.error('error:', error);
+      console.error('JSON.stringify(error):', JSON.stringify(error));
       console.error('error.response:', error.response);
       if (error.response.data) {
         console.error(error.response.data.message);
