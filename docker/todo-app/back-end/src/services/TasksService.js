@@ -2,6 +2,7 @@ const taskModel = require('../models/Tasks');
 
 const getAllTasks = async ({ id: userId }) => {
   const tasks = await taskModel.getAllTasks(userId);
+  console.log(`tasks for user ${userId}:`, tasks);
   return tasks;
 };
 
