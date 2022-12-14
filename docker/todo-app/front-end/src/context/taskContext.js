@@ -26,7 +26,6 @@ export function TaskProvider ({ children }) {
         authUserToken(error.response.status);
       } else {
         console.error('ERROR: GET /tasks: failed to get tasks');
-        setTimeout(() => window.location.reload(false), 3000);
       }
     });
 
@@ -38,7 +37,6 @@ export function TaskProvider ({ children }) {
         authUserToken(error.response.status);
       } else {
         console.error(`ERROR: GET /task/${id}: failed to get task`);
-        window.location.reload(false);
       }
     });
 
