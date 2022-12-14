@@ -16,27 +16,36 @@ function UserRegistration() {
     passwordConfirmation: null,
   });
   const [allValidFields, setAllValidFields] = useState(false);
-  const [ registrationFailed, setRegistrationFailed ] = useState(false);
+  const [ registrationFailed, setRegistrationFailed ] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [passwordSelected, setPasswordSelected] = useState({
     elementTarget: { id: '', style: { border: '', outline: '' } },
   });
 
+  const handleRegistrationException = (error) => {
+    if (error.response) {
+      const statusCode = error.response.status;
+      const message = error.response.data.message;
+      if (statusCode === 409) return setRegistrationFailed('Usuário existente!');
+      if (statusCode === 400 && message === '"email" must be a valid email') {
+        return setRegistrationFailed('Email inválido!');
+      }
+      return setRegistrationFailed('Não foi possível efetuar o cadastro, tente novamente !');
+    } else {
+      console.error(error.message);
+      setRegistrationFailed('Não foi possível efetuar o cadastro, tente novamente !');
+    }
+  }
+
   const registerUser = () => registrationApi('POST', '/registration', userData)
     .then((registrationData) => {
-      console.log('registrationData:', registrationData);
+      setRegistrationFailed('');
       const token = registrationData.data;
       localStorage.setItem('userToken', JSON.stringify(token));
-      history.push('/tasks')
+      history.push('/tasks');
     })
     .catch((error) => {
-      setRegistrationFailed(true);
-      if (error.response) {
-        console.error('ERROR:', error.response.data.message);
-      } else {
-        console.error(`ERROR: unable to register user`);
-      }
-      setTimeout(() => window.location.reload(false), 3000);
+      handleRegistrationException(error);
     });
 
   const validatePassword = () => {
@@ -123,8 +132,8 @@ function UserRegistration() {
   return (
     <section className="section-registration" onClick={ ({ target }) => handleClickPassword(target) }>
       <form className="section-form">
-        <div className={ registrationFailed ? 'div-registration-failed-alert' : 'div-registration-ok-alert' }>
-          Não foi possível efetuar o cadastro, tente novamente !
+        <div className="div-registration-alert">
+          { registrationFailed }
         </div>
         <div className="form-div-fields">
           <label htmlFor="input-name" className="form-label">Nome</label>
