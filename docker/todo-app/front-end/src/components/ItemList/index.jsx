@@ -7,11 +7,16 @@ function ItemList() {
   const { tasks, getTasks } = useContext(TaskContext);
 
   useEffect(()=>{
-    if(tasks.length === 0){
-      const userToken = JSON.parse(localStorage.getItem('userToken'));
-      setTimeout(() => getTasks({ authorization: userToken.token }), 5000);
-    }
-  }, [tasks, getTasks]);
+    const userToken = JSON.parse(localStorage.getItem('userToken'));
+    setInterval(() => getTasks({ authorization: userToken.token }), 3000);
+  }, []);
+
+  // useEffect(()=>{
+  //   if(tasks.length === 0){
+  //     const userToken = JSON.parse(localStorage.getItem('userToken'));
+  //     setTimeout(() => getTasks({ authorization: userToken.token }), 5000);
+  //   }
+  // }, [tasks, getTasks]);
 
   return (
     <div
