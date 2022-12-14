@@ -14,28 +14,35 @@ function UserLogin() {
     password: false,
   });
   const [allValidFields, setAllValidFields] = useState(false);
-  const [loginFailed, setLoginFailed] = useState({
-    failed: false,
-    message: '',
-    status: 0,
-  });
+  const [loginFailed, setLoginFailed] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [passwordSelected, setPasswordSelected] = useState({
     elementTarget: { id: '', style: { border: '', outline: '' } },
   });
 
+  const handleLoginException = (error) => {
+    if (error.response) {
+      const statusCode = error.response.status;
+      // const message = error.response.data.message;
+      if (statusCode === 401 || statusCode === 404) {
+        return setLoginFailed('E-mail ou senha incorretos !');
+      }
+      return setLoginFailed('Não foi possível efetuar o login, tente novamente !');
+    } else {
+      console.error(error.message);
+      setLoginFailed('Não foi possível efetuar o login, tente novamente !');
+    }
+  }
+
   const loginUser = () => loginApi('POST', '/login', userData)
     .then((loginData) => {
-      console.log('loginData:', loginData);
+      setLoginFailed('');
       const token = loginData.data;
       localStorage.setItem('userToken', JSON.stringify(token));
-      history.push('/tasks')
+      history.push('/tasks');
     })
     .catch((error) => {
-      const message = error.response.data.message;
-      const status = error.response.status;
-      setLoginFailed({ failed: true, message, status });
-      console.error('ERROR:', message);
+      handleLoginException(error);
     });
 
   const checkAllFields = () => {
@@ -96,8 +103,6 @@ function UserLogin() {
     checkAllFields();
   }, [validFields]);
 
-  const { failed, status } = loginFailed;
-
   return (
     <section className="section-login" onClick={ ({ target }) => handleClickPassword(target) }>
       <title className="title-login">
@@ -106,21 +111,8 @@ function UserLogin() {
         <p className="title-p">Organize suas tarefas em um só lugar !</p>
       </title>
       <form className="section-form">
-        <div>
-          {
-            (failed &&
-            (status === 401 || status === 404)) && (
-            <div className="div-login-failed-alert">
-              E-mail ou senha incorretos !
-            </div>)
-          }
-          {
-            (failed &&
-            (status !== 401 && status !== 404)) &&
-            (<div className="div-login-failed-alert">
-              Não foi possível efetuar o login !
-            </div>)
-          }
+        <div className="div-login-alert">
+          { loginFailed }
         </div>
         <div className="form-div-fields">
           <label htmlFor="input-email" className="form-label">E-mail</label>
