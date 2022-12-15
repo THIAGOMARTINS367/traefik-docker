@@ -10,6 +10,7 @@ services:
       - ../stack.env # Configuração necessária para o Portainer
     ports:
       - 3121:3121
+    tty: true
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -36,6 +37,7 @@ services:
       - ../stack.env # Configuração necessária para o Portainer
     ports:
       - 3120:3120
+    tty: true
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
