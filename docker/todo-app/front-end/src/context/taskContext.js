@@ -10,7 +10,7 @@ export function TaskProvider ({ children }) {
   const history = useHistory();
 
   const authUserToken = (statusCode) => {
-    if (statusCode === 401) {
+    if (statusCode === 401 || statusCode === 404) {
       localStorage.removeItem('userToken');
       return history.push('/login');
     };
