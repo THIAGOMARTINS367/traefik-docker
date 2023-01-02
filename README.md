@@ -34,7 +34,7 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
 - Na aplicação "Todo-List" (Diretório `todo-app`):
   * `JavaScript`, `JSX`, `React`, `ContextAPI`, `CSS`, `Node`, `MySQL` e `Jest`.
 
-- Na estruturação do ambiente de execução e desenvolvimento da aplicação (Diretório `docker`):
+- Na estruturação do ambiente de execução e desenvolvimento da aplicação:
   * `Docker`
 
 ---
