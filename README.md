@@ -51,3 +51,5 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
 
 3.  Inicialize o projeto
     * Entre na pasta `docker` via terminal --> `cd docker`.
+    * Copie todos os arquivos .env.development.local.example e cole
+    cada um deles com o mesmo nome removendo o sufixo ".example"
