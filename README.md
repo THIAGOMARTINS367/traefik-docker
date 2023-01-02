@@ -51,7 +51,7 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
 
 3.  Inicialize o projeto
     * Entre na pasta `docker` via terminal `cd docker`
-    * Copie cada arquivo ".env.development.local.example" nas pastas `back-end/`,
+    * Copie cada arquivo `.env.development.local.example nas pastas `back-end/`,
     `database/`, `front-end/` e `tests/` no caminho `docker/todo-app/` e cole cada
     um deles com o mesmo nome removendo o sufixo `.example` nas suas respectivas pastas.
     * Volte para a raiz do projeto e execute `npm run compose:up:dev` no terminal
