@@ -1,6 +1,6 @@
 # Descrição
 
-Projeto avaliativo de Servidor Web com Docker do meu "Curso Técnico em Informática" do IFES 🌐 🐳
+Projeto avaliativo de um" Servidor Web com Docker" do meu Curso Técnico em Informática do Instituto Federal do Espírito Santo (IFES) 🌐 🐳
 
 ---
 
@@ -50,8 +50,9 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
     * `cd traefik-docker`
 
 3.  Inicialize o projeto
-    * Entre na pasta `docker` via terminal --> `cd docker`.
+    * Entre na pasta `docker` via terminal --> `cd docker`
     * Copie cada arquivo ".env.development.local.example" nas pastas `back-end/`,
     `database/`, `front-end/` e `tests/` no caminho `docker/todo-app/` e cole cada
     um deles com o mesmo nome removendo o sufixo `.example` nas suas respectivas pastas.
-    * Volte para a raiz do projeto e execute `npm run compose:up:dev`
+    * Volte para a raiz do projeto e execute `npm run compose:up:dev` no terminal
+    * Abra o navegador e acesse `http://localhost:3000` para utilizar a aplicação
