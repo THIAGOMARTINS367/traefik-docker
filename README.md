@@ -31,7 +31,7 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
 
 ## Tecnologias usadas
 
-- Na aplicação "Todo-List" (Diretório `todo-app`):
+- Na aplicação "Todo-List":
   * `JavaScript`, `JSX`, `React`, `ContextAPI`, `CSS`, `Node`, `MySQL` e `Jest`.
 
 - Na estruturação do ambiente de execução e desenvolvimento da aplicação:
