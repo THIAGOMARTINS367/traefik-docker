@@ -1,8 +1,6 @@
 # Descrição
 
-Este projeto foi desenvolvido durante o período de Curso da Trybe 🚀
-
-O projeto tem por objetivo a avaliação e prática dos conhecimentos adquiridos na Trybe, visando o cumprimento do requisitos solicitados pela mesma.
+Projeto avaliativo de Servidor Web com Docker do meu "Curso Técnico em Informática" do IFES 🌐 🐳
 
 ---
 
@@ -73,9 +71,3 @@ Foi implementado a "conteinerização" da aplicação "Todo-List" que contém: f
     * Entre na pasta `docker` via terminal --> `cd docker`.
     * Copie e cole TUDO do arquivo `linux-compressed-commands.txt` se estiver usando Linux, ou `windows-compressed-commands.txt` se estiver usando o Windows que está dentro da pasta `docker`, no terminal, lembrando que os passos anteriores feitos no terminal devem ter sido concluídos, em seguida aperte a tecla "ENTER".
     * Acesse http://localhost:3000 e pronto, agora é só usar a aplicação.
-
----
-
-## Desmontração Instalação Local
-
-### *Em produção*...
