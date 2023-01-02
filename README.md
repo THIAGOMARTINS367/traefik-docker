@@ -1,6 +1,8 @@
 # Descrição
 
-Projeto avaliativo de um" Servidor Web com Docker" do meu Curso Técnico em Informática do Instituto Federal do Espírito Santo (IFES) 🌐 🐳
+Projeto avaliativo de um "Servidor Web com Docker" do meu Curso Técnico em Informática do Instituto Federal do Espírito Santo (IFES) 🌐 🐳
+
+Esse ReadME tem a função somente de detalhar o funcionamento e composição da aplicação "Todo-List" (Lista de Tarefas) desenvolvida para ser hospedada no servidor Web. 
 
 ---
 
