@@ -44,18 +44,10 @@ Foi criada e implementada uma aplicação "Todo-List" que contém: frontend, bac
 **⚠️ Certifique-se de que possui o Docker instalado e configurado na sua máquina.**
 
 1. Clone o repositório
-  * `git clone git@github.com:THIAGOMARTINS367/Trybe-project-docker-todo-list.git`
+  * `git clone git@github.com:THIAGOMARTINS367/traefik-docker.git`
 
   * Entre na pasta do repositório que você acabou de clonar pelo Terminal:
-    * `cd Trybe-project-docker-todo-list`
-
-2. Instale as dependências
-    * `npm install`
-
-  * Verifique se os testes estão executando:
-    * `npm test` (os testes devem rodar e falhar)
+    * `cd traefik-docker`
 
 3.  Inicialize o projeto
     * Entre na pasta `docker` via terminal --> `cd docker`.
-    * Copie e cole TUDO do arquivo `linux-compressed-commands.txt` se estiver usando Linux, ou `windows-compressed-commands.txt` se estiver usando o Windows que está dentro da pasta `docker`, no terminal, lembrando que os passos anteriores feitos no terminal devem ter sido concluídos, em seguida aperte a tecla "ENTER".
-    * Acesse http://localhost:3000 e pronto, agora é só usar a aplicação.
